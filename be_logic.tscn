@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bljx1sleb1bgr"]
 
-[ext_resource type="Script" uid="uid://5wqh27hetbh6" path="res://logic.gd" id="1_exoxr"]
+[ext_resource type="Script" uid="uid://e488600cijug" path="res://scripts/logic.gd" id="1_exoxr"]
 
 [node name="be_logic" type="Node" unique_id=646134977]
 script = ExtResource("1_exoxr")

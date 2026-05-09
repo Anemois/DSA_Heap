@@ -1,60 +1,64 @@
 [gd_scene format=3 uid="uid://bhcus3ldbxx7p"]
 
-[ext_resource type="Script" uid="uid://bdmvda3s4fyee" path="res://label.gd" id="1_ig7tw"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ig7tw"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0xm2m"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bljx1sleb1bgr" path="res://be_logic.tscn" id="1_272bh"]
+[ext_resource type="Script" uid="uid://c0p7bs78vdxl7" path="res://scripts/camera_2d.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://cxfp0wn8h34ow" path="res://icon.svg" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bufmv5w63854p" path="res://scripts/heapify_button.gd" id="3_7mycd"]
+[ext_resource type="Script" uid="uid://dji7q08o8csft" path="res://scripts/insert_button.gd" id="4_272bh"]
+[ext_resource type="Script" uid="uid://387pvv06u11" path="res://scripts/peep_button.gd" id="5_5vw27"]
+[ext_resource type="Script" uid="uid://b7rfig078cqei" path="res://scripts/pop_button.gd" id="6_kek77"]
 
 [node name="Main" type="Node2D" unique_id=14035978]
+
+[node name="HeapLogic" parent="." unique_id=646134977 instance=ExtResource("1_272bh")]
 
 [node name="Tree" type="Node2D" parent="." unique_id=1948374546]
 
 [node name="Array" type="Node2D" parent="." unique_id=554977431]
 
-[node name="UI" type="Control" parent="." unique_id=1453912312]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1543878726]
+script = ExtResource("1_ig7tw")
+
+[node name="DummySprite" type="Sprite2D" parent="." unique_id=112544339]
+position = Vector2(486, 206)
+texture = ExtResource("2_0xm2m")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=538962311]
+
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=1453912312]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextEdit" type="TextEdit" parent="UI" unique_id=1305084157]
+[node name="Heapify Button" type="Button" parent="CanvasLayer/UI" unique_id=1361790538]
 layout_mode = 0
-offset_top = -101.0
-offset_right = 378.0
-offset_bottom = 73.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ig7tw")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0xm2m")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_h2yge")
+offset_left = 214.0
+offset_right = 282.0
+offset_bottom = 31.0
+text = "Heapify"
+script = ExtResource("3_7mycd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=546812086]
+[node name="Insert Button" type="Button" parent="CanvasLayer/UI" unique_id=1609542389]
 layout_mode = 0
-offset_left = 3.0
-offset_top = -84.0
-offset_right = 381.0
-offset_bottom = 95.0
+offset_left = 312.0
+offset_right = 366.0
+offset_bottom = 31.0
+text = "Insert"
+script = ExtResource("4_272bh")
 
-[node name="Heapify Button" type="Button" parent="UI/VBoxContainer" unique_id=1361790538]
-layout_mode = 2
+[node name="Peep Button" type="Button" parent="CanvasLayer/UI" unique_id=450267702]
+layout_mode = 0
+offset_left = 447.0
+offset_right = 494.0
+offset_bottom = 31.0
+text = "Peep"
+script = ExtResource("5_5vw27")
 
-[node name="Insert Button" type="Button" parent="UI/VBoxContainer" unique_id=1609542389]
-layout_mode = 2
-
-[node name="Peep Button" type="Button" parent="UI/VBoxContainer" unique_id=450267702]
-layout_mode = 2
-
-[node name="Pop Button" type="Button" parent="UI/VBoxContainer" unique_id=1646756203]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/VBoxContainer" unique_id=945766577]
-layout_mode = 2
-text = "23"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("1_ig7tw")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=806158332]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Pop Button" type="Button" parent="CanvasLayer/UI" unique_id=1646756203]
+layout_mode = 0
+offset_left = 392.0
+offset_right = 430.0
+offset_bottom = 31.0
+text = "Pop"
+script = ExtResource("6_kek77")
