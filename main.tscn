@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bhcus3ldbxx7p"]
 
+[ext_resource type="PackedScene" uid="uid://bljx1sleb1bgr" path="res://be_logic.tscn" id="1_272bh"]
 [ext_resource type="Script" uid="uid://c0p7bs78vdxl7" path="res://scripts/camera_2d.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cxfp0wn8h34ow" path="res://icon.svg" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://bufmv5w63854p" path="res://scripts/heapify_button.gd" id="3_7mycd"]
@@ -9,6 +10,8 @@
 
 [node name="Main" type="Node2D" unique_id=14035978]
 
+[node name="HeapLogic" parent="." unique_id=646134977 instance=ExtResource("1_272bh")]
+
 [node name="Tree" type="Node2D" parent="." unique_id=1948374546]
 
 [node name="Array" type="Node2D" parent="." unique_id=554977431]
@@ -16,7 +19,7 @@
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1543878726]
 script = ExtResource("1_ig7tw")
 
-[node name="Dummy Sprite" type="Sprite2D" parent="." unique_id=112544339]
+[node name="DummySprite" type="Sprite2D" parent="." unique_id=112544339]
 position = Vector2(486, 206)
 texture = ExtResource("2_0xm2m")
 
