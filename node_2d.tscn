@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene format=3 uid="uid://dad7bc4523ujr"]
 
 [ext_resource type="Script" uid="uid://csumx046jqoeu" path="res://set_visualizer.gd" id="1_wtcfe"]
@@ -60,3 +61,8 @@ theme = SubResource("Theme_wtcfe")
 
 [connection signal="pressed" from="SetVisualizer/InputRow/InputField/Insert" to="SetVisualizer" method="_on_insert_pressed"]
 [connection signal="pressed" from="SetVisualizer/InputRow/InputField/Remove" to="SetVisualizer" method="_on_remove_pressed"]
+=======
+[gd_scene format=3 uid="uid://bvjquts7ajf0h"]
+
+[node name="Node2D" type="Node2D" unique_id=159092395]
+>>>>>>> 9e36ce3cbb0074c2fceba250aabbe7de87114d22

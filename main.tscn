@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bhcus3ldbxx7p"]
+
+[node name="Main" type="Node2D" unique_id=14035978]
+
+[node name="Tree" type="Node2D" parent="." unique_id=1948374546]
+
+[node name="Array" type="Node2D" parent="." unique_id=554977431]
+
+[node name="UI" type="Control" parent="." unique_id=1453912312]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heapify Button" type="Button" parent="UI" unique_id=1361790538]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Insert Button" type="Button" parent="UI" unique_id=1609542389]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Peep Button" type="Button" parent="UI" unique_id=450267702]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Pop Button" type="Button" parent="UI" unique_id=1646756203]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
