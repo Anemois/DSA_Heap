@@ -2,7 +2,7 @@ extends Node
 
 signal item_inserted(value: int, index: int)
 signal items_swapped(index_a: int, index_b: int)
-signal item_removed(value: int)
+signal item_removed(value: int, index: int)
 
 @export var heap: Array[int] = [] 
 
@@ -26,16 +26,16 @@ func pop_max() -> int:
 	# Handle heap with only 1 item
 	if heap.size() == 1:
 		heap.pop_back()
-		item_removed.emit(max_val)
+		item_removed.emit(max_val, 0)
 		return max_val
 		
 	# animate the root swapping with the bottom node before deleting it
 	var last_index = heap.size() - 1
-	items_swapped.emit(0, last_index)
+	items_swapped.emit(last_index, 0)
 	
 	heap[0] = heap[last_index]
 	heap.pop_back()
-	item_removed.emit(max_val)
+	item_removed.emit(max_val, last_index)
 	
 	_sift_down(0)
 	
@@ -85,3 +85,52 @@ func _sift_down(index: int) -> void:
 		
 		items_swapped.emit(index, larger_index)
 		_sift_down(larger_index)
+
+func _ready() -> void:
+	print("========================================")
+	print("🚀 BACKEND DIAGNOSTICS ONLINE")
+	print("========================================")
+
+	# --- TEST 1: Insertions ---
+	print("\n[Test 1] Executing sequential inserts...")
+	insert(10)
+	insert(50)
+	insert(20)
+	insert(100)
+	insert(5)
+	
+	# Check your console: 100 should have bubbled up to index 0!
+	print("Heap State -> ", heap) 
+	assert(heap[0] == 100, "FATAL: Root is not the maximum after inserts.")
+	print("-> Insert Test: PASSED")
+
+	# --- TEST 2: Peek ---
+	print("\n[Test 2] Testing Peek...")
+	var top = peek()
+	print("Peeked Value -> ", top)
+	assert(top == 100, "FATAL: Peek did not return the root.")
+	print("-> Peek Test: PASSED")
+
+	# --- TEST 3: Pop Max ---
+	print("\n[Test 3] Executing pop_max()...")
+	var removed = pop_max()
+	print("Popped Value -> ", removed)
+	print("Heap State -> ", heap)
+	assert(removed == 100, "FATAL: pop_max did not return the largest value.")
+	assert(heap[0] == 50, "FATAL: Heap did not sift down correctly. 50 should be the new root.")
+	print("-> Pop Max Test: PASSED")
+
+	# --- TEST 4: Floyd's Heapify ---
+	print("\n[Test 4] Executing Bulk Heapify...")
+	# We simulate the user overriding the heap with a random list
+	heap = [3, 99, 12, 8, 45, 105, 1] 
+	print("Raw Array -> ", heap)
+
+	heapify() # Run your O(n) algorithm
+	print("Heapified State -> ", heap)
+	assert(heap[0] == 105, "FATAL: Heapify failed. 105 should be the root.")
+	print("-> Heapify Test: PASSED")
+
+	print("\n========================================")
+	print("✅ ALL BACKEND SYSTEMS GREEN")
+	print("========================================")
