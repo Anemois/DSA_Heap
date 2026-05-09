@@ -10,15 +10,11 @@ config_version=5
 
 [application]
 
-<<<<<<< HEAD
-config/name="Test"
-run/main_scene="uid://dad7bc4523ujr"
-=======
 config/name="Heap_Visualization"
 run/main_scene="uid://bhcus3ldbxx7p"
->>>>>>> 9e36ce3cbb0074c2fceba250aabbe7de87114d22
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+<<<<<<<HEADconfig/name="Test"
 
 [physics]
 
