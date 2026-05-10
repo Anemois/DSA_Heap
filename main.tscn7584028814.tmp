@@ -162,11 +162,10 @@ offset_right = 1154.0
 offset_bottom = 647.0
 color = Color(0.12591085, 0.12591085, 0.12591082, 1)
 
-[node name="Tree" type="Node2D" parent="CanvasLayer2" unique_id=1948374546]
-position = Vector2(576, 0)
-script = ExtResource("2_5vw27")
-
 [node name="HeapLogic" parent="." unique_id=646134977 instance=ExtResource("1_272bh")]
+
+[node name="Tree" type="Node2D" parent="." unique_id=1948374546]
+script = ExtResource("2_5vw27")
 
 [node name="Array" type="Node2D" parent="." unique_id=554977431]
 
