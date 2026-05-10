@@ -8,7 +8,157 @@
 [ext_resource type="Script" uid="uid://387pvv06u11" path="res://scripts/peep_button.gd" id="5_5vw27"]
 [ext_resource type="Script" uid="uid://b7rfig078cqei" path="res://scripts/pop_button.gd" id="6_kek77"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.9426493, 0.71417814, 0.326366, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cqfq"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.99215686, 0.88235295, 0.72156864, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vw27"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg77c"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.9411765, 0.7137255, 0.3254902, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaehf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.99215686, 0.88235295, 0.72156864, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kek77"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycdy4"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.9411765, 0.7137255, 0.3254902, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_074og"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.99215686, 0.88235295, 0.72156864, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c57u"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48qg"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.9411765, 0.7137255, 0.3254902, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vivmo"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.99215686, 0.88235295, 0.72156864, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [node name="Main" type="Node2D" unique_id=14035978]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1417852408]
+
+[node name="Background" type="ColorRect" parent="CanvasLayer2" unique_id=1705113154]
+offset_right = 1154.0
+offset_bottom = 647.0
+color = Color(0.12591085, 0.12591085, 0.12591082, 1)
 
 [node name="HeapLogic" parent="." unique_id=646134977 instance=ExtResource("1_272bh")]
 
@@ -17,9 +167,11 @@
 [node name="Array" type="Node2D" parent="." unique_id=554977431]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1543878726]
+offset = Vector2(576, 324)
 script = ExtResource("1_ig7tw")
 
 [node name="DummySprite" type="Sprite2D" parent="." unique_id=112544339]
+visible = false
 position = Vector2(486, 206)
 texture = ExtResource("2_0xm2m")
 
@@ -28,37 +180,58 @@ texture = ExtResource("2_0xm2m")
 [node name="UI" type="Control" parent="CanvasLayer" unique_id=1453912312]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 32.0
+offset_top = 30.0
+offset_right = 438.0
+offset_bottom = 92.0
 
-[node name="Heapify Button" type="Button" parent="CanvasLayer/UI" unique_id=1361790538]
-layout_mode = 0
-offset_left = 214.0
-offset_right = 282.0
-offset_bottom = 31.0
-text = "Heapify"
-script = ExtResource("3_7mycd")
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=948686474]
+offset_left = 39.0
+offset_top = 36.0
+offset_right = 438.0
+offset_bottom = 85.0
+theme_override_constants/separation = 20
 
-[node name="Insert Button" type="Button" parent="CanvasLayer/UI" unique_id=1609542389]
-layout_mode = 0
-offset_left = 312.0
-offset_right = 366.0
-offset_bottom = 31.0
+[node name="Insert Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1609542389]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_272bh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_efxa6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2cqfq")
 text = "Insert"
 script = ExtResource("4_272bh")
 
-[node name="Peep Button" type="Button" parent="CanvasLayer/UI" unique_id=450267702]
-layout_mode = 0
-offset_left = 447.0
-offset_right = 494.0
-offset_bottom = 31.0
+[node name="Peep Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=450267702]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_5vw27")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dg77c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yaehf")
 text = "Peep"
 script = ExtResource("5_5vw27")
 
-[node name="Pop Button" type="Button" parent="CanvasLayer/UI" unique_id=1646756203]
-layout_mode = 0
-offset_left = 392.0
-offset_right = 430.0
-offset_bottom = 31.0
+[node name="Pop Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1646756203]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kek77")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ycdy4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_074og")
 text = "Pop"
 script = ExtResource("6_kek77")
+
+[node name="Heapify Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1361790538]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4c57u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_w48qg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vivmo")
+text = "Heapify"
+script = ExtResource("3_7mycd")
