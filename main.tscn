@@ -8,6 +8,15 @@
 [ext_resource type="Script" uid="uid://dji7q08o8csft" path="res://scripts/insert_button.gd" id="4_272bh"]
 [ext_resource type="Script" uid="uid://387pvv06u11" path="res://scripts/peep_button.gd" id="5_5vw27"]
 [ext_resource type="Script" uid="uid://b7rfig078cqei" path="res://scripts/pop_button.gd" id="6_kek77"]
+[ext_resource type="Script" uid="uid://dcnu3gw3bqo36" path="res://scripts/psuedocode_text.gd" id="9_kek77"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cegan"]
+bg_color = Color(0.11119685, 0.11119685, 0.11119678, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.42749298, 0.4274931, 0.42749283, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
 content_margin_left = 4.0
@@ -158,8 +167,8 @@ corner_detail = 5
 layer = -30
 
 [node name="Background" type="ColorRect" parent="CanvasLayer2" unique_id=1705113154]
-offset_right = 1154.0
-offset_bottom = 647.0
+offset_right = 1152.0
+offset_bottom = 648.0
 color = Color(0.12591085, 0.12591085, 0.12591082, 1)
 
 [node name="Tree" type="Node2D" parent="CanvasLayer2" unique_id=1948374546]
@@ -170,33 +179,145 @@ script = ExtResource("2_5vw27")
 
 [node name="Array" type="Node2D" parent="." unique_id=554977431]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1543878726]
-position = Vector2(576, 324)
-script = ExtResource("1_ig7tw")
-
 [node name="DummySprite" type="Sprite2D" parent="." unique_id=112544339]
 visible = false
 position = Vector2(868, 379)
 texture = ExtResource("2_0xm2m")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1543878726]
+position = Vector2(576, 324)
+zoom = Vector2(0.25, 0.25)
+script = ExtResource("1_ig7tw")
+
+[node name="Psuedo Codes" type="Control" parent="." unique_id=1788360387]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1449.0
+offset_top = -887.0
+offset_right = 1489.0
+offset_bottom = -847.0
+
+[node name="BG" type="RichTextLabel" parent="Psuedo Codes" unique_id=667003140]
+z_index = -1
+layout_mode = 0
+offset_left = -23.0
+offset_top = -14.0
+offset_right = 1380.0
+offset_bottom = 1178.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_cegan")
+scroll_active = false
+
+[node name="Heapify" type="RichTextLabel" parent="Psuedo Codes" unique_id=1319699349]
+visible = false
+layout_mode = 0
+offset_right = 1500.0
+offset_bottom = 1500.0
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+bbcode_enabled = true
+text = "Heapify(heap, array)
+	n = array.size()
+	for i = 0 to n-1
+		Insert(heap, array[lb]i[rb])
+
+Insert(heap, value)
+	heap.append(value)	
+	index = heap.size() - 1
+	Sift-Up(heap, index)
+
+Sift-Up(heap, index)
+	parent_index = floor((index - 1) / 2)
+
+	if index > 0 and heap[index] > heap[parent_index]:
+		swap(heap[index], heap[parent_index])
+		Sift-Up(heap, parent_index)"
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+script = ExtResource("9_kek77")
+
+[node name="Pop" type="RichTextLabel" parent="Psuedo Codes" unique_id=1129830605]
+visible = false
+layout_mode = 0
+offset_right = 1500.0
+offset_bottom = 1500.0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Pop(heap)
+	if heap.is_empty():
+		return NULL
+	var max_val = heap[0]
+	swap(heap[heap.size() - 1], heap[0])
+	Sift-Down(heap, 0)
+	return max_val
+
+Sift-Down(heap, index) -> void:
+	var larger_index = index
+	var left_child = 2 * index + 1
+	var right_child = 2 * index + 2
+
+	ifheap[larger_index]:
+		larger_index = left_child
+	if right_child < heap.size() and heap[right_child] > heap[larger_index]:
+		larger_index = right_child
+
+	if larger_index != index:
+		swap(heap[index], [larger_index])
+		Sift-Down(heap, larger_index)"
+autowrap_mode = 0
+script = ExtResource("9_kek77")
+
+[node name="Peep" type="RichTextLabel" parent="Psuedo Codes" unique_id=802317133]
+visible = false
+layout_mode = 0
+offset_right = 1500.0
+offset_bottom = 1500.0
+bbcode_enabled = true
+text = "Peep(heap)
+	if heap.empty()
+		return NULL
+	else
+		return heap[0]"
+autowrap_mode = 0
+script = ExtResource("9_kek77")
+
+[node name="Insert" type="RichTextLabel" parent="Psuedo Codes" unique_id=1746856693]
+visible = false
+layout_mode = 0
+offset_right = 1500.0
+offset_bottom = 1500.0
+bbcode_enabled = true
+text = "Insert(heap, value)
+	heap.append(value)	
+	index = heap.size() - 1
+	Sift-Up(heap, index)
+
+Sift-Up(heap, index)
+	parent_index = floor((index - 1) / 2)
+
+	if index > 0 and heap[index] > heap[parent_index]:
+		swap(heap[index], heap[parent_index])
+		Sift-Up(heap, parent_index)"
+autowrap_mode = 0
+script = ExtResource("9_kek77")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=538962311]
 
 [node name="UI" type="Control" parent="CanvasLayer" unique_id=1453912312]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 32.0
-offset_top = 30.0
-offset_right = 438.0
-offset_bottom = 92.0
+offset_right = 1152.0
+offset_bottom = 648.0
 
-[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=948686474]
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI" unique_id=948686474]
+layout_mode = 0
 offset_left = 39.0
 offset_top = 36.0
 offset_right = 438.0
 offset_bottom = 85.0
 theme_override_constants/separation = 20
 
-[node name="Insert Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1609542389]
+[node name="Insert Button" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=1609542389]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -207,7 +328,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_2cqfq")
 text = "Insert"
 script = ExtResource("4_272bh")
 
-[node name="Peep Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=450267702]
+[node name="Peep Button" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=450267702]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -218,7 +339,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_yaehf")
 text = "Peep"
 script = ExtResource("5_5vw27")
 
-[node name="Pop Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1646756203]
+[node name="Pop Button" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=1646756203]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -229,7 +350,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_074og")
 text = "Pop"
 script = ExtResource("6_kek77")
 
-[node name="Heapify Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1361790538]
+[node name="Heapify Button" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=1361790538]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -239,3 +360,8 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_w48qg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vivmo")
 text = "Heapify"
 script = ExtResource("3_7mycd")
+
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Insert Button" to="CanvasLayer/UI/VBoxContainer/Insert Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Peep Button" to="CanvasLayer/UI/VBoxContainer/Peep Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Pop Button" to="CanvasLayer/UI/VBoxContainer/Pop Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Heapify Button" to="CanvasLayer/UI/VBoxContainer/Heapify Button" method="_on_pressed"]

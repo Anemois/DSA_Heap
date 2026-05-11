@@ -1,8 +1,6 @@
 extends Node
 
-signal item_inserted(value: int, index: int)
-signal items_swapped(index_a: int, index_b: int)
-signal item_removed(value: int, index: int)
+
 
 const DEBUG = false
 
@@ -13,7 +11,7 @@ func insert(value: int) -> void:
 	var index = heap.size() - 1
 	
 	# draw the node first
-	item_inserted.emit(value, index)
+	SignalBus.item_inserted.emit(value, index)
 	
 	# Then animate the sifting
 	_sift_up(index)
@@ -28,16 +26,16 @@ func pop_max() -> int:
 	# Handle heap with only 1 item
 	if heap.size() == 1:
 		heap.pop_back()
-		item_removed.emit(max_val, 0)
+		SignalBus.item_removed.emit(max_val, 0)
 		return max_val
 		
 	# animate the root swapping with the bottom node before deleting it
 	var last_index = heap.size() - 1
-	items_swapped.emit(last_index, 0)
+	SignalBus.items_swapped.emit(last_index, 0)
 	
 	heap[0] = heap[last_index]
 	heap.pop_back()
-	item_removed.emit(max_val, last_index)
+	SignalBus.item_removed.emit(max_val, last_index)
 	
 	_sift_down(0)
 	
@@ -63,7 +61,7 @@ func _sift_up(index: int) -> void:
 		heap[index] = heap[parent_index]
 		heap[parent_index] = temp	
 		
-		items_swapped.emit(index, parent_index)
+		SignalBus.items_swapped.emit(index, parent_index)
 		_sift_up(parent_index)
 
 func _sift_down(index: int) -> void:
@@ -85,7 +83,7 @@ func _sift_down(index: int) -> void:
 		heap[index] = heap[larger_index]
 		heap[larger_index] = temp
 		
-		items_swapped.emit(index, larger_index)
+		SignalBus.items_swapped.emit(index, larger_index)
 		_sift_down(larger_index)
 
 func _ready() -> void:
