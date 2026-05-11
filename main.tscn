@@ -171,12 +171,12 @@ script = ExtResource("2_5vw27")
 [node name="Array" type="Node2D" parent="." unique_id=554977431]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1543878726]
-offset = Vector2(576, 324)
+position = Vector2(576, 324)
 script = ExtResource("1_ig7tw")
 
 [node name="DummySprite" type="Sprite2D" parent="." unique_id=112544339]
 visible = false
-position = Vector2(486, 206)
+position = Vector2(868, 379)
 texture = ExtResource("2_0xm2m")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=538962311]

@@ -10,13 +10,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			zoom_pos = get_global_mouse_position()
 			self.zoom += Vector2(0.1, 0.1) * self.zoom
-			self.position += (zoom_pos - self.position)/(max_zoom_movement) * 50
+			self.position += (zoom_pos - self.global_position)/(max_zoom_movement) * 50
 		# zoom out
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			zoom_pos = get_global_mouse_position()
 			self.zoom -= Vector2(0.1, 0.1) * self.zoom
-			self.position += (self.position - zoom_pos)/max_zoom_movement * 50
+			self.position += (self.global_position - zoom_pos)/(max_zoom_movement) * 50
 			# call the zoom function
+		#print(zoom_pos, " ", self.global_position)
 
 
 func _on_pop_button_pressed() -> void:

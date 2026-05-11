@@ -4,6 +4,8 @@ signal item_inserted(value: int, index: int)
 signal items_swapped(index_a: int, index_b: int)
 signal item_removed(value: int, index: int)
 
+const DEBUG = false
+
 @export var heap: Array[int] = [] 
 
 func insert(value: int) -> void:
@@ -87,50 +89,51 @@ func _sift_down(index: int) -> void:
 		_sift_down(larger_index)
 
 func _ready() -> void:
-	print("========================================")
-	print("🚀 BACKEND DIAGNOSTICS ONLINE")
-	print("========================================")
+	if DEBUG:
+		print("========================================")
+		print("🚀 BACKEND DIAGNOSTICS ONLINE")
+		print("========================================")
 
-	# --- TEST 1: Insertions ---
-	print("\n[Test 1] Executing sequential inserts...")
-	insert(10)
-	insert(50)
-	insert(20)
-	insert(100)
-	insert(5)
-	
-	# Check your console: 100 should have bubbled up to index 0!
-	print("Heap State -> ", heap) 
-	assert(heap[0] == 100, "FATAL: Root is not the maximum after inserts.")
-	print("-> Insert Test: PASSED")
+		# --- TEST 1: Insertions ---
+		print("\n[Test 1] Executing sequential inserts...")
+		insert(10)
+		insert(50)
+		insert(20)
+		insert(100)
+		insert(5)
+		
+		# Check your console: 100 should have bubbled up to index 0!
+		print("Heap State -> ", heap) 
+		assert(heap[0] == 100, "FATAL: Root is not the maximum after inserts.")
+		print("-> Insert Test: PASSED")
 
-	# --- TEST 2: Peek ---
-	print("\n[Test 2] Testing Peek...")
-	var top = peek()
-	print("Peeked Value -> ", top)
-	assert(top == 100, "FATAL: Peek did not return the root.")
-	print("-> Peek Test: PASSED")
+		# --- TEST 2: Peek ---
+		print("\n[Test 2] Testing Peek...")
+		var top = peek()
+		print("Peeked Value -> ", top)
+		assert(top == 100, "FATAL: Peek did not return the root.")
+		print("-> Peek Test: PASSED")
 
-	# --- TEST 3: Pop Max ---
-	print("\n[Test 3] Executing pop_max()...")
-	var removed = pop_max()
-	print("Popped Value -> ", removed)
-	print("Heap State -> ", heap)
-	assert(removed == 100, "FATAL: pop_max did not return the largest value.")
-	assert(heap[0] == 50, "FATAL: Heap did not sift down correctly. 50 should be the new root.")
-	print("-> Pop Max Test: PASSED")
+		# --- TEST 3: Pop Max ---
+		print("\n[Test 3] Executing pop_max()...")
+		var removed = pop_max()
+		print("Popped Value -> ", removed)
+		print("Heap State -> ", heap)
+		assert(removed == 100, "FATAL: pop_max did not return the largest value.")
+		assert(heap[0] == 50, "FATAL: Heap did not sift down correctly. 50 should be the new root.")
+		print("-> Pop Max Test: PASSED")
 
-	# --- TEST 4: Floyd's Heapify ---
-	print("\n[Test 4] Executing Bulk Heapify...")
-	# We simulate the user overriding the heap with a random list
-	heap = [3, 99, 12, 8, 45, 105, 1] 
-	print("Raw Array -> ", heap)
+		# --- TEST 4: Floyd's Heapify ---
+		print("\n[Test 4] Executing Bulk Heapify...")
+		# We simulate the user overriding the heap with a random list
+		heap = [3, 99, 12, 8, 45, 105, 1] 
+		print("Raw Array -> ", heap)
 
-	heapify() # Run your O(n) algorithm
-	print("Heapified State -> ", heap)
-	assert(heap[0] == 105, "FATAL: Heapify failed. 105 should be the root.")
-	print("-> Heapify Test: PASSED")
+		heapify() # Run your O(n) algorithm
+		print("Heapified State -> ", heap)
+		assert(heap[0] == 105, "FATAL: Heapify failed. 105 should be the root.")
+		print("-> Heapify Test: PASSED")
 
-	print("\n========================================")
-	print("✅ ALL BACKEND SYSTEMS GREEN")
-	print("========================================")
+		print("\n========================================")
+		print("✅ ALL BACKEND SYSTEMS GREEN")
+		print("========================================")
