@@ -1,4 +1,5 @@
 extends Button
+@onready var main: Node2D = $"../../../.."
 
 @onready var insert_text = $"../Input"
 

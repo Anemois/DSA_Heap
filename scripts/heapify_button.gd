@@ -1,4 +1,5 @@
 extends Button
+@onready var main: Node2D = $"../../../.."
 
 func _on_pressed() -> void:
-	SignalBus.heapify_button_pressed.emit()
+	main.heapify_button_pressed.emit()
