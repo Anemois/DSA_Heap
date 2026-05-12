@@ -177,42 +177,6 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.9426493, 0.71417814, 0.326366, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cqfq"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.99215686, 0.88235295, 0.72156864, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
 [node name="Main" type="Node2D" unique_id=14035978]
 script = ExtResource("1_4c57u")
 
@@ -228,17 +192,13 @@ color = Color(0.12591085, 0.12591085, 0.12591082, 1)
 position = Vector2(576, 0)
 script = ExtResource("2_5vw27")
 
-[node name="HeapLogic" parent="." unique_id=646134977 instance=ExtResource("1_272bh")]
-
-[node name="Array" type="Node2D" parent="." unique_id=554977431]
-
-[node name="Tree" type="Node2D" parent="." unique_id=1948374546]
-position = Vector2(576, 0)
-script = ExtResource("2_5vw27")
-
 [node name="LineManager" type="CanvasGroup" parent="Tree" unique_id=163496158]
 position = Vector2(-576, 0)
 script = ExtResource("11_efxa6")
+
+[node name="HeapLogic" parent="." unique_id=646134977 instance=ExtResource("1_272bh")]
+
+[node name="Array" type="Node2D" parent="." unique_id=554977431]
 
 [node name="DummySprite" type="Sprite2D" parent="." unique_id=112544339]
 visible = false
@@ -430,10 +390,8 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_vivmo")
 text = "Heapify"
 script = ExtResource("3_7mycd")
 
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Insert Button" to="CanvasLayer/UI/VBoxContainer/Insert Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Peep Button" to="." method="_on_peep_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Peep Button" to="CanvasLayer/UI/VBoxContainer/Peep Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Pop Button" to="CanvasLayer/UI/VBoxContainer/Pop Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Insert Button" to="CanvasLayer/UI/VBoxContainer/Insert Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Heapify Button" to="CanvasLayer/UI/VBoxContainer/Heapify Button" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Insert Button" to="CanvasLayer/UI/VBoxContainer/Insert Button" method="_on_pressed"]

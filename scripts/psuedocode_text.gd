@@ -1,16 +1,15 @@
 extends RichTextLabel
 
 var should_visible = false
-@onready var main: Node2D = $"../.."
 
 func _ready() -> void:
 	self.add_theme_color_override("font_readonly_color", Color(1.0, 1.0, 1.0, 1.0))
 	self.visible = false
 	self.add_theme_font_size_override("normal_font_size", 40)
-	main.heapify_button_pressed.connect(heapify)
-	main.insert_button_pressed.connect(insert)
-	main.peep_button_pressed.connect(peep)
-	main.pop_button_pressed.connect(pops)
+	SignalBus.heapify_button_pressed.connect(heapify)
+	SignalBus.insert_button_pressed.connect(insert)
+	SignalBus.peep_button_pressed.connect(peep)
+	SignalBus.pop_button_pressed.connect(pops)
 
 func heapify():
 	if(self.name == "Heapify"):

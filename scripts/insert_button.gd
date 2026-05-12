@@ -1,5 +1,4 @@
 extends Button
-@onready var main: Node2D = $"../../../.."
 
 @onready var insert_text = $"../Input"
 
@@ -13,4 +12,4 @@ func _on_pressed() -> void:
 	else:
 		return
 	if(0<value and value<100):
-			SignalBus.insert_button_pressed.emit(value)
+		SignalBus.insert_button_pressed.emit(value)

@@ -14,9 +14,9 @@ config/name="Heap_Visualization"
 run/main_scene="uid://bhcus3ldbxx7p"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
-<<<<<<<HEADconfig/name="Test"
+config/name="Test"
 
-<<<<<<< HEAD
+
 [autoload]
 
 SignalBus="*uid://dt2juc4650cio"
@@ -25,8 +25,6 @@ SignalBus="*uid://dt2juc4650cio"
 
 version_control/autoload_on_startup=true
 
-=======
->>>>>>> 2fb8a62a20d4da4213b99fde266769f27f9b5d8a
 [physics]
 
 3d/physics_engine="Jolt Physics"
