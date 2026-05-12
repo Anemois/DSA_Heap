@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://387pvv06u11" path="res://scripts/peep_button.gd" id="5_5vw27"]
 [ext_resource type="Script" uid="uid://b7rfig078cqei" path="res://scripts/pop_button.gd" id="6_kek77"]
 [ext_resource type="Script" uid="uid://dcnu3gw3bqo36" path="res://scripts/psuedocode_text.gd" id="9_kek77"]
+[ext_resource type="Script" uid="uid://cefs45dedd1sh" path="res://canvas_group.gd" id="11_efxa6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cegan"]
 bg_color = Color(0.11119685, 0.11119685, 0.11119678, 1)
@@ -190,6 +191,10 @@ color = Color(0.12591085, 0.12591085, 0.12591082, 1)
 [node name="Tree" type="Node2D" parent="." unique_id=1948374546]
 position = Vector2(576, 0)
 script = ExtResource("2_5vw27")
+
+[node name="LineManager" type="CanvasGroup" parent="Tree" unique_id=163496158]
+position = Vector2(-576, 0)
+script = ExtResource("11_efxa6")
 
 [node name="HeapLogic" parent="." unique_id=646134977 instance=ExtResource("1_272bh")]
 
@@ -385,11 +390,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_vivmo")
 text = "Heapify"
 script = ExtResource("3_7mycd")
 
-<<<<<<< HEAD
-=======
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Insert Button" to="CanvasLayer/UI/VBoxContainer/Insert Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Peep Button" to="." method="_on_peep_button_pressed"]
->>>>>>> 2fb8a62a20d4da4213b99fde266769f27f9b5d8a
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Peep Button" to="CanvasLayer/UI/VBoxContainer/Peep Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Pop Button" to="CanvasLayer/UI/VBoxContainer/Pop Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Insert Button" to="CanvasLayer/UI/VBoxContainer/Insert Button" method="_on_pressed"]
