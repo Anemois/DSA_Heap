@@ -6,14 +6,14 @@ var length: int = 0
 
 func _ready() -> void:
 	nodes.clear()
+	SignalBus.item_inserted.connect(add_node)
 
 func _process(delta: float) -> void:
-	if(Input.is_action_just_pressed("ui_up")):
-		add_node(length)
+	pass
 
-func add_node(v: int):
+func add_node(value: int, index: int):
 	var newNode = treeNode.instantiate()
-	newNode.set_value(v)
+	newNode.set_value(value)
 	nodes.append(newNode)
 	length += 1
 	add_child(newNode)
