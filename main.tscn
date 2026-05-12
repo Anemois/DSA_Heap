@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bhcus3ldbxx7p"]
 
+[ext_resource type="Script" uid="uid://dt2juc4650cio" path="res://scripts/SignalBus.gd" id="1_4c57u"]
 [ext_resource type="PackedScene" uid="uid://bljx1sleb1bgr" path="res://be_logic.tscn" id="1_272bh"]
 [ext_resource type="Script" uid="uid://c0p7bs78vdxl7" path="res://scripts/camera_2d.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cxfp0wn8h34ow" path="res://icon.svg" id="2_0xm2m"]
@@ -162,6 +163,7 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [node name="Main" type="Node2D" unique_id=14035978]
+script = ExtResource("1_4c57u")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1417852408]
 layer = -30
@@ -362,6 +364,7 @@ text = "Heapify"
 script = ExtResource("3_7mycd")
 
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Insert Button" to="CanvasLayer/UI/VBoxContainer/Insert Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Peep Button" to="." method="_on_peep_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Peep Button" to="CanvasLayer/UI/VBoxContainer/Peep Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Pop Button" to="CanvasLayer/UI/VBoxContainer/Pop Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Heapify Button" to="CanvasLayer/UI/VBoxContainer/Heapify Button" method="_on_pressed"]

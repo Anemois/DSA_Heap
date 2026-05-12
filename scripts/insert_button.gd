@@ -1,5 +1,6 @@
 extends Button
+@onready var main: Node2D = $"../../../.."
 
 func _on_pressed() -> void:
 	var value = 3
-	SignalBus.insert_button_pressed.emit(value)
+	main.insert_button_pressed.emit(value)
