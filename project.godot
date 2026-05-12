@@ -16,6 +16,17 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 <<<<<<<HEADconfig/name="Test"
 
+<<<<<<< HEAD
+[autoload]
+
+SignalBus="*uid://dt2juc4650cio"
+
+[editor]
+
+version_control/autoload_on_startup=true
+
+=======
+>>>>>>> 2fb8a62a20d4da4213b99fde266769f27f9b5d8a
 [physics]
 
 3d/physics_engine="Jolt Physics"

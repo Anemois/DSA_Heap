@@ -2,8 +2,6 @@ extends Node
 
 signal enemy_died(value: int)
 @onready var main: Node2D = $".."
-
-
 const DEBUG = false
 
 @export var heap: Array[int] = [] 
@@ -89,6 +87,7 @@ func _sift_down(index: int) -> void:
 		_sift_down(larger_index)
 
 func _ready() -> void:
+	SignalBus.insert_button_pressed.connect(insert)
 	if DEBUG:
 		print("========================================")
 		print("🚀 BACKEND DIAGNOSTICS ONLINE")
