@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pass
-	
+
 func add_node(value: int, index: int):
 	print("Hi")
 	var newNode: TreeNode = treeNode.instantiate()

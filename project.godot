@@ -10,16 +10,20 @@ config_version=5
 
 [application]
 
-config/name="Heap_Visualization"
+config/name="Test"
 run/main_scene="uid://bhcus3ldbxx7p"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
-config/name="Test"
-
+<<<<<<<HEADconfig/name="Test"
+"<<<<<<<HEAD[autoload]SignalBus"="*uid://dt2juc4650cio"
 
 [autoload]
 
 SignalBus="*uid://dt2juc4650cio"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [editor]
 

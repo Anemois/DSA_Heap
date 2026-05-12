@@ -22,11 +22,12 @@ func _process(delta: float) -> void:
 	if(has_changed):
 		for i in range(1, lines.size()):
 			var parent = (i - 1) / 2
-			lines[i].set_pos(tree.position + tree.nodes[parent].assigned_position, tree.position + tree.nodes[i].assigned_position)
+			lines[i].move_half_to(tree.position + tree.nodes[parent].assigned_position, tree.position + tree.nodes[i].assigned_position)
 
 func draw_a_line(start, end, color):
 	var new: ALine = A_LINE.instantiate()
-	new.set_pos(start, end)
+	new.set_pos(start, start)
+	new.move_half_to(start, end)
 	new.set_color(color)
 	self.add_child(new)
 	lines.append(new)
