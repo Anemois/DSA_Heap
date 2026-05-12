@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://y6h2l8oyaeyk"]
+
+[ext_resource type="Script" uid="uid://uhji7vydcnak" path="res://line_2d.gd" id="1_aqnkx"]
+
+[node name="ALine" type="Line2D" unique_id=1961114019]
+points = PackedVector2Array(0, 0, 100, 100)
+script = ExtResource("1_aqnkx")

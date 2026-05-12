@@ -1,6 +1,6 @@
-extends Node2D
+class_name Heap_Tree extends Node2D
 
-var nodes: Array[Node2D]
+var nodes: Array[TreeNode]
 var length: int = 0
 @onready var treeNode = preload("res://treeNode.tscn")
 
@@ -12,8 +12,9 @@ func _process(delta: float) -> void:
 		add_node(length)
 
 func add_node(v: int):
-	var newNode = treeNode.instantiate()
+	var newNode: TreeNode = treeNode.instantiate()
 	newNode.set_value(v)
+	
 	nodes.append(newNode)
 	length += 1
 	add_child(newNode)

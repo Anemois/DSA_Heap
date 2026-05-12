@@ -1,4 +1,4 @@
-extends Node2D
+class_name TreeNode extends Node2D
 
 var assigned_position : Vector2
 const move_rate: float = 0.5
