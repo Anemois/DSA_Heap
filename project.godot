@@ -10,12 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Heap_Visualization"
+config/name="DSA_heap"
 run/main_scene="uid://bhcus3ldbxx7p"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
-config/name="Test"
-
 
 [autoload]
 

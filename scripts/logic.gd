@@ -13,6 +13,7 @@ func insert(value: int) -> void:
 	SignalBus.item_inserted.emit(value, index)
 	
 	# Then animate the sifting
+	await SignalBus.insert_finished
 	_sift_up(index)
 	
 func pop_max() -> int:
@@ -61,6 +62,7 @@ func _sift_up(index: int) -> void:
 		heap[parent_index] = temp	
 		
 		SignalBus.items_swapped.emit(index, parent_index)
+		await SignalBus.swap_finished
 		_sift_up(parent_index)
 
 func _sift_down(index: int) -> void:
@@ -82,7 +84,7 @@ func _sift_down(index: int) -> void:
 		heap[index] = heap[larger_index]
 		heap[larger_index] = temp
 		
-		SignalBus.items_swapped.emit(index, larger_index)
+		SignalBus.items_swap.emit(index, larger_index)
 		_sift_down(larger_index)
 
 func _ready() -> void:
