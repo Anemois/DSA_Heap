@@ -8,6 +8,7 @@ func _ready() -> void:
 	nodes.clear()
 	SignalBus.item_inserted.connect(add_node)
 	SignalBus.items_swapped.connect(swap)
+	SignalBus.item_removed.connect(remove_node)
 
 func _process(delta: float) -> void:
 	pass
@@ -22,6 +23,15 @@ func add_node(value: int, index: int):
 	rearrange_tree()
 	await get_tree().create_timer(1.0).timeout
 	SignalBus.insert_finished.emit()
+
+func remove_node(value: int, index: int):
+	var targetNode = nodes.back()
+	targetNode.queue_free()
+	nodes.pop_back()
+	length -= 1
+	rearrange_tree()
+	await get_tree().create_timer(1.0).timeout
+	SignalBus.remove_finished.emit()
 
 func rearrange_tree():
 	var y: int = 0
@@ -52,7 +62,7 @@ func swap(index_a: int, index_b: int) -> void:
 	
 	Node_a.relocate(position_b.x, position_b.y)
 	Node_b.relocate(position_a.x, position_a.y)
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.5).timeout
 	Node_a.teleport(position_a.x, position_a.y)
 	Node_b.teleport(position_b.x, position_b.y)
 	Node_a.set_value(value_b)

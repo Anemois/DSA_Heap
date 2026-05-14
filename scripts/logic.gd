@@ -27,15 +27,18 @@ func pop_max() -> int:
 	if heap.size() == 1:
 		heap.pop_back()
 		SignalBus.item_removed.emit(max_val, 0)
+		await SignalBus.remove_finished
 		return max_val
 		
 	# animate the root swapping with the bottom node before deleting it
 	var last_index = heap.size() - 1
 	SignalBus.items_swapped.emit(last_index, 0)
+	await SignalBus.swap_finished
 	
 	heap[0] = heap[last_index]
 	heap.pop_back()
 	SignalBus.item_removed.emit(max_val, last_index)
+	await SignalBus.remove_finished
 	
 	_sift_down(0)
 	
@@ -84,11 +87,13 @@ func _sift_down(index: int) -> void:
 		heap[index] = heap[larger_index]
 		heap[larger_index] = temp
 		
-		SignalBus.items_swap.emit(index, larger_index)
+		SignalBus.items_swapped.emit(index, larger_index)
+		await SignalBus.swap_finished
 		_sift_down(larger_index)
 
 func _ready() -> void:
 	SignalBus.insert_button_pressed.connect(insert)
+	SignalBus.pop_button_pressed.connect(pop_max)
 	if DEBUG:
 		print("========================================")
 		print("🚀 BACKEND DIAGNOSTICS ONLINE")
@@ -116,7 +121,7 @@ func _ready() -> void:
 
 		# --- TEST 3: Pop Max ---
 		print("\n[Test 3] Executing pop_max()...")
-		var removed = pop_max()
+		var removed = await pop_max()
 		print("Popped Value -> ", removed)
 		print("Heap State -> ", heap)
 		assert(removed == 100, "FATAL: pop_max did not return the largest value.")

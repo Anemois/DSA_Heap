@@ -4,7 +4,7 @@ var assigned_position : Vector2
 var move_rate: float = SignalBus.move_speed
 
 func _ready() -> void:
-	position = Vector2(0, 100000)
+	position = Vector2(0, 5000)
 
 func _process(delta: float) -> void:
 	move()
@@ -27,6 +27,3 @@ func get_assigned_position() -> Vector2:
 
 func get_value() -> int:
 	return int($Label.text)
-
-func swap_to(target: Node2D) -> void:
-	pass
