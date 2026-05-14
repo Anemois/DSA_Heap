@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 SignalBus="*uid://dt2juc4650cio"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [editor]
 
 version_control/autoload_on_startup=true

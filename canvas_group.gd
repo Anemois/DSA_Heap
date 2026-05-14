@@ -1,7 +1,7 @@
 extends CanvasGroup
 
 const A_LINE = preload("uid://y6h2l8oyaeyk")
-@onready var tree: Heap_Tree = $".."
+@onready var tree: = $".."
 
 var lines: Array[ALine] = [null]
 
@@ -13,7 +13,8 @@ func _process(delta: float) -> void:
 
 func draw_a_line(start, end, color):
 	var new: ALine = A_LINE.instantiate()
-	new.set_pos(start, end)
+	new.set_pos(start, start)
+	new.move_half_to(start, end)
 	new.set_color(color)
 	self.add_child(new)
 	lines.append(new)

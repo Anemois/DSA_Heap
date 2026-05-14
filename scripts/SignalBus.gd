@@ -9,3 +9,5 @@ signal insert_finished
 signal items_swapped(index_a: int, index_b: int)
 signal swap_finished
 signal item_removed(value: int, index: int)
+
+var move_speed: float = 0.1
