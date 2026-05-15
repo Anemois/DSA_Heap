@@ -14,4 +14,4 @@ signal item_removed(value: int, index: int)
 signal remove_finished
 signal processes_all_finished
 
-var stimulation_speed: int = 1
+var stimulation_speed: int = 10
