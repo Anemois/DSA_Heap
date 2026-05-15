@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://387pvv06u11" path="res://scripts/peep_button.gd" id="5_5vw27"]
 [ext_resource type="Script" uid="uid://b7rfig078cqei" path="res://scripts/pop_button.gd" id="6_kek77"]
 [ext_resource type="Script" uid="uid://dcnu3gw3bqo36" path="res://scripts/psuedocode_text.gd" id="9_kek77"]
-[ext_resource type="Script" uid="uid://cefs45dedd1sh" path="res://canvas_group.gd" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://cefs45dedd1sh" path="res://scripts/line_manager.gd" id="11_efxa6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cegan"]
 bg_color = Color(0.11119685, 0.11119685, 0.11119678, 1)
