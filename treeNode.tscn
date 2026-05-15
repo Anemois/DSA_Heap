@@ -12,16 +12,15 @@ script = ExtResource("1_evpp1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1021307615]
 material = SubResource("ShaderMaterial_e2u21")
-scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_112p8")
 
 [node name="Label" type="Label" parent="." unique_id=1346938605]
-offset_left = -21.0
-offset_top = -33.0
-offset_right = 19.0
-offset_bottom = 34.0
+offset_left = -67.0
+offset_top = -71.0
+offset_right = 67.0
+offset_bottom = 66.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 100
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1

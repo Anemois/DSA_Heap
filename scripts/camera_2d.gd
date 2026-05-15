@@ -1,24 +1,30 @@
 extends Camera2D
 
-var zoom_pos = Vector2(576, 324)
-
-var max_zoom_movement = Vector2(576, 324)
+var zoom_value: float = 0.3
+var zoom_increment: float = 0.02
+var zoom_max: float = 1.0
+var zoom_min: float = 0.1
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		# zoom in
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			zoom_pos = get_global_mouse_position()
-			self.zoom += Vector2(0.1, 0.1) * self.zoom
-			self.position += (zoom_pos - self.global_position)/(max_zoom_movement) * 50
+			zoom_in(get_global_mouse_position())
 		# zoom out
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			zoom_pos = get_global_mouse_position()
-			self.zoom -= Vector2(0.1, 0.1) * self.zoom
-			self.position += (self.global_position - zoom_pos)/(max_zoom_movement) * 50
-			# call the zoom function
-		#print(zoom_pos, " ", self.global_position)
+			zoom_out(get_global_mouse_position())
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
+			position -= event.relative / zoom
 
-func _on_pop_button_pressed() -> void:
-	pass # Replace with function body.
+func zoom_in(zoom_pos: Vector2):
+	zoom_value = min(zoom_value + zoom_increment, zoom_max)
+	zoom = zoom_value * Vector2.ONE
+	global_position += (zoom_pos-global_position)/zoom * zoom_increment
+
+func zoom_out(zoom_pos: Vector2):
+	zoom_value = max(zoom_value - zoom_increment, zoom_min)
+	zoom = zoom_value * Vector2.ONE
+	global_position -= (zoom_pos-global_position)/zoom * zoom_increment
