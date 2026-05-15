@@ -1,7 +1,7 @@
 class_name TreeNode extends Node2D
 
 var assigned_position : Vector2
-var move_rate: float = SignalBus.move_speed
+var move_rate: float = SignalBus.stimulation_speed * 0.1
 
 func _ready() -> void:
 	position = Vector2(0, 5000)

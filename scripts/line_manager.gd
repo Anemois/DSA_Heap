@@ -21,12 +21,12 @@ func add_line(start, end, color):
 
 func rearrange():
 	var len = tree.length
-	while(tree.length > lines.size() && tree.length >= 2):
+	while(tree.length > lines.size() and tree.length >= 2):
 		var i = lines.size()
 		var parent = (i - 1) / 2
 		add_line(tree.position + tree.nodes[parent].assigned_position, tree.position + tree.nodes[i].assigned_position, Color(0.945, 0.945, 0.0, 1.0))
 		
-	while(tree.length < lines.size() && lines.size() >= 1):
+	while(tree.length < lines.size() and lines.size() >= 1):
 		lines.back().queue_free()
 		lines.pop_back()
 	

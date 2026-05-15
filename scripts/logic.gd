@@ -15,8 +15,8 @@ func insert(value: int) -> void:
 	# Then animate the sifting
 	await SignalBus.insert_finished
 	_sift_up(index)
-	
-func pop_max() -> int:
+
+func pop_max(useless: int) -> int:
 	if heap.is_empty():
 		push_error("Cannot pop from an empty heap!")
 		return -1 
@@ -44,9 +44,11 @@ func pop_max() -> int:
 	
 	return max_val
 
-func peek() -> int:
+func peep(useless: int) -> int:
 	if heap.is_empty():
 		return -1
+	await get_tree().create_timer(0.1).timeout
+	SignalBus.processes_all_finished.emit()
 	return heap[0]
 	
 func heapify() -> void:
@@ -67,6 +69,8 @@ func _sift_up(index: int) -> void:
 		SignalBus.items_swapped.emit(index, parent_index)
 		await SignalBus.swap_finished
 		_sift_up(parent_index)
+	else:
+		SignalBus.processes_all_finished.emit()
 
 func _sift_down(index: int) -> void:
 	var larger_index = index
@@ -90,10 +94,13 @@ func _sift_down(index: int) -> void:
 		SignalBus.items_swapped.emit(index, larger_index)
 		await SignalBus.swap_finished
 		_sift_down(larger_index)
+	else:
+		SignalBus.processes_all_finished.emit()
 
 func _ready() -> void:
 	SignalBus.insert_button_pressed.connect(insert)
 	SignalBus.pop_button_pressed.connect(pop_max)
+	SignalBus.peep_button_pressed.connect(peep)
 	if DEBUG:
 		print("========================================")
 		print("🚀 BACKEND DIAGNOSTICS ONLINE")
@@ -114,14 +121,14 @@ func _ready() -> void:
 
 		# --- TEST 2: Peek ---
 		print("\n[Test 2] Testing Peek...")
-		var top = peek()
+		var top = await peep(0)
 		print("Peeked Value -> ", top)
 		assert(top == 100, "FATAL: Peek did not return the root.")
 		print("-> Peek Test: PASSED")
 
 		# --- TEST 3: Pop Max ---
 		print("\n[Test 3] Executing pop_max()...")
-		var removed = await pop_max()
+		var removed = await pop_max(0)
 		print("Popped Value -> ", removed)
 		print("Heap State -> ", heap)
 		assert(removed == 100, "FATAL: pop_max did not return the largest value.")

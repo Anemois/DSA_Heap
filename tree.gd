@@ -2,6 +2,7 @@ class_name Heap_Tree extends Node2D
 
 var nodes: Array[TreeNode]
 var length: int = 0
+var stimulation_time = 0.1 + 1.0 / SignalBus.stimulation_speed
 @onready var treeNode = preload("res://treeNode.tscn")
 @onready var line_manager = $LineManager
 
@@ -22,7 +23,7 @@ func add_node(value: int, index: int):
 	length += 1
 	add_child(newNode)
 	rearrange_tree()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(stimulation_time).timeout
 	SignalBus.insert_finished.emit()
 
 func remove_node(value: int, index: int):
@@ -64,7 +65,7 @@ func swap(index_a: int, index_b: int) -> void:
 	
 	Node_a.relocate(position_b.x, position_b.y)
 	Node_b.relocate(position_a.x, position_a.y)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(stimulation_time).timeout
 	Node_a.teleport(position_a.x, position_a.y)
 	Node_b.teleport(position_b.x, position_b.y)
 	Node_a.set_value(value_b)

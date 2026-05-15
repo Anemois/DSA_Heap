@@ -2,7 +2,7 @@ class_name ALine extends Line2D
 
 var move_to_start: Vector2
 var move_to_end: Vector2
-var move_rate = SignalBus.move_speed
+var move_rate: float = SignalBus.stimulation_speed * 0.1
 
 func _ready() -> void:
 	width = 20
