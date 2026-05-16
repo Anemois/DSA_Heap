@@ -4,7 +4,6 @@ var move_to_start: Vector2
 var move_to_end: Vector2
 
 var line_default_color: Color = Color(1.0, 1.0, 0.0, 1.0)
-var swap_color: Color = Color(0.0, 1.0, 0.0, 1.0)
 
 func _ready() -> void:
 	width = 20
@@ -30,6 +29,31 @@ func relocate(start, end):
 
 func reset():
 	self.default_color = line_default_color
+	
+func set_normal() -> void:
+	set_color(Color.WHITE)
 
-func swap():
-	self.default_color = swap_color
+func set_new_node() -> void:
+	set_color(Color.YELLOW)
+
+func set_comparing() -> void:
+	set_color(Color.ORANGE)
+
+func set_visited() -> void:
+	set_color(Color.RED)
+	
+func set_swapping() -> void:
+	set_color(Color.GREEN)
+
+func set_color_by_type(color_type: String) -> void:
+	match color_type:
+		"normal":
+			set_normal()
+		"new":
+			set_new_node()
+		"compare":
+			set_comparing()
+		"visited":
+			set_visited()
+		"swap":
+			set_swapping()

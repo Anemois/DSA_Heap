@@ -11,7 +11,7 @@ func _ready() -> void:
 	SignalBus.peep_button_pressed.connect(peep)
 	SignalBus.pop_button_pressed.connect(pops)
 
-func heapify():
+func heapify(val):
 	if(self.name == "Heapify"):
 		self.visible = true
 	else:
@@ -23,13 +23,13 @@ func insert(value):
 	else:
 		self.visible = false
 		
-func peep():
+func peep(val):
 	if(self.name == "Peep"):
 		self.visible = true
 	else:
 		self.visible = false
 	
-func pops():
+func pops(val):
 	if(self.name == "Pop"):
 		self.visible = true
 	else:

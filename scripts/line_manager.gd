@@ -6,7 +6,7 @@ const A_LINE = preload("uid://y6h2l8oyaeyk")
 var lines: Array[ALine] = [null]
 
 func _ready() -> void:
-	SignalBus.items_swapped.connect(swap)
+	SignalBus.line_color_changed.connect(line_change_color)
 
 func _process(delta: float) -> void:
 	pass
@@ -25,7 +25,7 @@ func rearrange():
 		var parent = (i - 1) / 2
 		add_line(tree.position + tree.nodes[parent].assigned_position, tree.position + tree.nodes[i].assigned_position)
 		
-	while(tree.length < lines.size() and lines.size() >= 1):
+	while(tree.length < lines.size() and lines.size() >= 2):
 		lines.back().queue_free()
 		lines.pop_back()
 	
@@ -33,7 +33,5 @@ func rearrange():
 		var parent = (i - 1) / 2
 		lines[i].relocate(tree.position + tree.nodes[parent].assigned_position, tree.position + tree.nodes[i].assigned_position)
 
-func swap(i, j):
-	if(i < j):
-		swap(j, i)
-	lines[i].swap()
+func line_change_color(index, color):
+	lines[index].set_color_by_type(color)
