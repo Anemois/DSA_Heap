@@ -3,7 +3,7 @@ class_name Heap_Array extends Node2D
 var nodes: Array[TreeNode] = []
 @onready var treeNode = preload("res://treeNode.tscn")
 
-@export var horizontal_gap: float = 80.0 
+@export var horizontal_gap: float = 250.0 
 @export var start_x: float = -1000.0
 @export var start_y: float = -350.0
 @export var max_items_per_row: int = 20
