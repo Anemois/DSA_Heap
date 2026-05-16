@@ -13,5 +13,7 @@ signal swap_finished
 signal item_removed(value: int, index: int)
 signal remove_finished
 signal processes_all_finished
+signal node_color_changed(index: int, color_type: String)
+signal all_nodes_color_reset
 
 var stimulation_speed: int = 10

@@ -27,3 +27,31 @@ func get_assigned_position() -> Vector2:
 
 func get_value() -> int:
 	return int($Label.text)
+
+func set_normal() -> void:
+	$Sprite2D.modulate = Color.WHITE
+
+func set_new_node() -> void:
+	$Sprite2D.modulate = Color.YELLOW
+
+func set_comparing() -> void:
+	$Sprite2D.modulate = Color.ORANGE
+
+func set_visited() -> void:
+	$Sprite2D.modulate = Color.PURPLE
+
+func set_swapping() -> void:
+	$Sprite2D.modulate = Color.RED
+
+func set_color_by_type(color_type: String) -> void:
+	match color_type:
+		"normal":
+			set_normal()
+		"new":
+			set_new_node()
+		"compare":
+			set_comparing()
+		"visited":
+			set_visited()
+		"swap":
+			set_swapping()

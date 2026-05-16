@@ -12,6 +12,8 @@ func _ready() -> void:
 	SignalBus.item_inserted.connect(add_node)
 	SignalBus.items_swapped.connect(swap)
 	SignalBus.item_removed.connect(remove_node)
+	SignalBus.node_color_changed.connect(color_node)
+	SignalBus.all_nodes_color_reset.connect(reset_all_nodes_color)
 
 func _process(delta: float) -> void:
 	pass
@@ -20,6 +22,7 @@ func add_node(value: int, index: int):
 	print("Hi")
 	var newNode: TreeNode = treeNode.instantiate()
 	newNode.set_value(value)
+	newNode.set_new_node()
 	nodes.append(newNode)
 	length += 1
 	add_child(newNode)
@@ -72,3 +75,12 @@ func swap(index_a: int, index_b: int) -> void:
 	Node_a.set_value(value_b)
 	Node_b.set_value(value_a)
 	SignalBus.swap_finished.emit()	
+
+func color_node(index: int, color_type: String) -> void:
+	if index < 0 or index >= nodes.size():
+		return
+	nodes[index].set_color_by_type(color_type)
+
+func reset_all_nodes_color() -> void:
+	for node in nodes:
+		node.set_normal()
