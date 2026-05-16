@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bufmv5w63854p" path="res://scripts/heapify_button.gd" id="3_7mycd"]
 [ext_resource type="Script" uid="uid://dji7q08o8csft" path="res://scripts/insert_button.gd" id="4_272bh"]
 [ext_resource type="Script" uid="uid://387pvv06u11" path="res://scripts/peep_button.gd" id="5_5vw27"]
+[ext_resource type="Script" uid="uid://cbbgnq22ylpeu" path="res://array.gd" id="5_dg77c"]
 [ext_resource type="Script" uid="uid://b7rfig078cqei" path="res://scripts/pop_button.gd" id="6_kek77"]
 [ext_resource type="Script" uid="uid://dcnu3gw3bqo36" path="res://scripts/psuedocode_text.gd" id="9_kek77"]
 [ext_resource type="Script" uid="uid://cefs45dedd1sh" path="res://scripts/line_manager.gd" id="11_efxa6"]
@@ -235,6 +236,7 @@ script = ExtResource("11_efxa6")
 [node name="HeapLogic" parent="." unique_id=646134977 instance=ExtResource("1_272bh")]
 
 [node name="Array" type="Node2D" parent="." unique_id=554977431]
+script = ExtResource("5_dg77c")
 
 [node name="DummySprite" type="Sprite2D" parent="." unique_id=112544339]
 visible = false
