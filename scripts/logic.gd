@@ -7,7 +7,7 @@ const DEBUG = false
 
 func insert(value: int) -> void:
 	SignalBus.all_nodes_color_reset.emit()
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1).timeout
 	
 	heap.append(value)
 	var index = heap.size() - 1
@@ -21,7 +21,7 @@ func insert(value: int) -> void:
 
 func pop_max(useless: int) -> int:
 	SignalBus.all_nodes_color_reset.emit()
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1).timeout
 	
 	if heap.is_empty():
 		push_error("Cannot pop from an empty heap!")
@@ -53,7 +53,7 @@ func pop_max(useless: int) -> int:
 func peep(useless: int) -> int:
 	if heap.is_empty():
 		return -1
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1).timeout
 	SignalBus.processes_all_finished.emit()
 	return heap[0]
 	
@@ -69,12 +69,12 @@ func _sift_up(index: int) -> void:
 	if index > 0:
 		SignalBus.node_color_changed.emit(index, "compare")
 		SignalBus.node_color_changed.emit(parent_index, "compare")
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4).timeout
 	
 	if index > 0 and heap[index] > heap[parent_index]:
 		SignalBus.node_color_changed.emit(index, "swap")
 		SignalBus.node_color_changed.emit(parent_index, "swap")
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed / 10 * 0.4).timeout
 		
 		var temp = heap[index]
 		heap[index] = heap[parent_index]
@@ -85,14 +85,14 @@ func _sift_up(index: int) -> void:
 		
 		SignalBus.node_color_changed.emit(index, "visited")
 		SignalBus.node_color_changed.emit(parent_index, "visited")
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed / 10 * 0.2).timeout
 		
 		_sift_up(parent_index)
 	else:
 		if index > 0:
 			SignalBus.node_color_changed.emit(index, "visited")
-			SignalBus.node_color_changed.emit(parent_index, "visited")
-		await get_tree().create_timer(0.2).timeout
+			#SignalBus.node_color_changed.emit(parent_index, "visited")
+		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed / 10 * 0.2).timeout
 		SignalBus.processes_all_finished.emit()
 
 func _sift_down(index: int) -> void:
@@ -103,7 +103,7 @@ func _sift_down(index: int) -> void:
 	if left_child < heap.size():
 		SignalBus.node_color_changed.emit(index, "compare")
 		SignalBus.node_color_changed.emit(left_child, "compare")
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed / 10 * 0.4).timeout
 		
 		if heap[left_child] > heap[larger_index]:
 			larger_index = left_child
@@ -111,7 +111,7 @@ func _sift_down(index: int) -> void:
 	if right_child < heap.size():
 		SignalBus.node_color_changed.emit(index, "compare")
 		SignalBus.node_color_changed.emit(right_child, "compare")
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed / 10 * 0.4).timeout
 		
 		if heap[right_child] > heap[larger_index]:
 			larger_index = right_child
@@ -119,7 +119,7 @@ func _sift_down(index: int) -> void:
 	if larger_index != index:
 		SignalBus.node_color_changed.emit(index, "swap")
 		SignalBus.node_color_changed.emit(larger_index, "swap")
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed / 10 * 0.4).timeout
 		
 		var temp = heap[index]
 		heap[index] = heap[larger_index]
@@ -130,12 +130,12 @@ func _sift_down(index: int) -> void:
 		
 		SignalBus.node_color_changed.emit(index, "visited")
 		SignalBus.node_color_changed.emit(larger_index, "visited")
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed / 10 * 0.2).timeout
 		
 		_sift_down(larger_index)
 	else:
 		SignalBus.node_color_changed.emit(index, "visited")
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed / 10 * 0.2).timeout
 		SignalBus.processes_all_finished.emit()
 
 func _ready() -> void:

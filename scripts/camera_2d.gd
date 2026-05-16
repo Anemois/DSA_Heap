@@ -15,11 +15,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			zoom_out(get_global_mouse_position())
 	elif event is InputEventMagnifyGesture:
 		mac_zoom(get_global_mouse_position(), event.factor)
-			
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
+	elif event is InputEventMouseMotion:
 		if event.button_mask == MOUSE_BUTTON_MASK_LEFT:
 			position -= event.relative / zoom
+			
+func _input(event: InputEvent) -> void:
+	pass
+	
 
 func mac_zoom(zoom_pos: Vector2, event_factor: float):
 	zoom = zoom * sqrt(event_factor)

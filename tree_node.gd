@@ -1,16 +1,16 @@
 class_name TreeNode extends Node2D
 
 var assigned_position : Vector2
-var move_rate: float = SignalBus.stimulation_speed * 0.1
 
 func _ready() -> void:
-	position = Vector2(0, 5000)
+	pass
 
 func _process(delta: float) -> void:
-	move()
+	move(delta)
 
-func move() -> void:
-	position = position + (assigned_position - position) * move_rate
+func move(delta) -> void:
+	var move_rate: float = SignalBus.stimulation_speed * 5
+	position = position + (assigned_position - position) * move_rate * (5 if abs(position.y) >= 4000 else 1) * delta
 
 func relocate(x: float, y: float) -> void:
 	assigned_position = Vector2(x,  y)
@@ -38,10 +38,10 @@ func set_comparing() -> void:
 	$Sprite2D.modulate = Color.ORANGE
 
 func set_visited() -> void:
-	$Sprite2D.modulate = Color.PURPLE
+	$Sprite2D.modulate = Color.RED
 
 func set_swapping() -> void:
-	$Sprite2D.modulate = Color.RED
+	$Sprite2D.modulate = Color.SKY_BLUE
 
 func set_color_by_type(color_type: String) -> void:
 	match color_type:

@@ -2,7 +2,6 @@ class_name Heap_Tree extends Node2D
 
 var nodes: Array[TreeNode]
 var length: int = 0
-var stimulation_time = 1.0 / SignalBus.stimulation_speed - 0.1
 var blink: float = 0.001
 @onready var treeNode = preload("res://treeNode.tscn")
 @onready var line_manager = $LineManager
@@ -21,13 +20,14 @@ func _process(delta: float) -> void:
 func add_node(value: int, index: int):
 	print("Hi")
 	var newNode: TreeNode = treeNode.instantiate()
+	newNode.global_position = Vector2(0, 20000)
 	newNode.set_value(value)
 	newNode.set_new_node()
 	nodes.append(newNode)
 	length += 1
 	add_child(newNode)
 	rearrange_tree()
-	await get_tree().create_timer(stimulation_time).timeout
+	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed).timeout
 	SignalBus.insert_finished.emit()
 
 func remove_node(value: int, index: int):
@@ -69,7 +69,7 @@ func swap(index_a: int, index_b: int) -> void:
 	
 	Node_a.relocate(position_b.x, position_b.y)
 	Node_b.relocate(position_a.x, position_a.y)
-	await get_tree().create_timer(stimulation_time).timeout
+	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed).timeout
 	Node_a.teleport(position_a.x, position_a.y)
 	Node_b.teleport(position_b.x, position_b.y)
 	Node_a.set_value(value_b)

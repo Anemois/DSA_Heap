@@ -24,6 +24,7 @@ func _ready() -> void:
 
 func add_node(value: int, index: int) -> void:
 	var newNode: TreeNode = treeNode.instantiate()
+	newNode.global_position = Vector2(0, -20000)
 	newNode.set_value(value)
 	nodes.append(newNode)
 	add_child(newNode)

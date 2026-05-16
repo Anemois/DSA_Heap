@@ -16,4 +16,5 @@ signal processes_all_finished
 signal node_color_changed(index: int, color_type: String)
 signal all_nodes_color_reset
 
-var stimulation_speed: int = 10
+var stimulation_speed: float = 1
+var animation_time: float = 1
