@@ -39,6 +39,7 @@ func pop_max(useless: int) -> int:
 		
 	# animate the root swapping with the bottom node before deleting it
 	var last_index = heap.size() - 1
+	SignalBus.add_halo.emit(last_index)
 	SignalBus.node_color_changed.emit(last_index, "swap")
 	SignalBus.node_color_changed.emit(0, "swap")
 	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed / 10 * 0.4).timeout

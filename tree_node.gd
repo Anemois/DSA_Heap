@@ -7,7 +7,7 @@ var assigned_position : Vector2
 
 func _ready() -> void:
 	halo.visible = false
-	halo.modulate = Color(0.693, 0.447, 1.0, 1.0)
+	halo.modulate = Color(0.997, 0.0, 0.0, 1.0)
 	set_text_color(Color.BLACK)
 
 func _process(delta: float) -> void:

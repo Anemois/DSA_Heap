@@ -3,7 +3,7 @@ class_name Heap_Tree extends Node2D
 var nodes: Array[TreeNode]
 var length: int = 0
 var blink: float = 0.001
-var height_diff: int = 210
+var height_diff: int = 220
 @onready var treeNode = preload("res://treeNode.tscn")
 @onready var line_manager = $LineManager
 
@@ -15,6 +15,7 @@ func _ready() -> void:
 	SignalBus.node_color_changed.connect(color_node)
 	SignalBus.all_nodes_color_reset.connect(reset_all_nodes_color)
 	SignalBus.item_peeped.connect(peeped)
+	SignalBus.add_halo.connect(add_halo)
 	
 func _process(delta: float) -> void:
 	pass
@@ -40,6 +41,7 @@ func remove_node(value: int, index: int):
 	rearrange_tree()
 	await get_tree().create_timer(blink).timeout
 	SignalBus.remove_finished.emit()
+	add_halo(index)
 
 func rearrange_tree():
 	var y: int = 0
@@ -97,5 +99,9 @@ func reset_all_nodes_color() -> void:
 			
 func peeped(value, index) -> void:
 	if length > 0:
-		nodes[0].set_halo(true)
+		add_halo(index)
 		nodes[0].set_color_by_type("visited")
+
+func add_halo(index) -> void:
+	if index < length:
+		nodes[index].set_halo(true)

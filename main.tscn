@@ -13,8 +13,8 @@
 [ext_resource type="Script" uid="uid://dcnu3gw3bqo36" path="res://scripts/psuedocode_text.gd" id="9_kek77"]
 [ext_resource type="Script" uid="uid://cefs45dedd1sh" path="res://scripts/line_manager.gd" id="11_efxa6"]
 [ext_resource type="Script" uid="uid://b03fekmo2h577" path="res://h_slider.gd" id="13_ycdy4"]
-[ext_resource type="Script" uid="uid://brtwxv7hlxu8l" path="res://scripts/return_value.gd" id="14_vivmo"]
-[ext_resource type="Script" uid="uid://b61iylqyn2xyr" path="res://scripts/cpu_particles_2d.gd" id="14_w48qg"]
+[ext_resource type="Script" path="res://scripts/return_value.gd" id="14_vivmo"]
+[ext_resource type="Script" path="res://scripts/cpu_particles_2d.gd" id="14_w48qg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cegan"]
 bg_color = Color(0.11119685, 0.11119685, 0.11119678, 1)
