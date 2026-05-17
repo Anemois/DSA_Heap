@@ -100,12 +100,12 @@ func reset_all_nodes_color() -> void:
 func peeped(value, index) -> void:
 	if length > 0:
 		add_halo(index)
-		nodes[0].set_color_by_type("visited")
 		nodes[0].set_new_node()
 		var tween = create_tween()
 		tween.tween_property(nodes[0], "scale", Vector2(1.4, 1.4), 0.15)
 		tween.tween_property(nodes[0], "scale", Vector2(1.0, 1.0), 0.15)
 		await tween.finished
+		nodes[0].set_normal()
 
 func add_halo(index) -> void:
 	if index < length:

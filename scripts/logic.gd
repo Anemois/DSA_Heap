@@ -57,13 +57,13 @@ func pop_max(useless: int) -> int:
 	return max_val
 
 func peep(useless: int) -> int:
-	SignalBus.all_nodes_color_reset.emit()
-	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1).timeout
 	if heap.is_empty():
+		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1).timeout
 		SignalBus.processes_all_finished.emit()
 		return -1
+	SignalBus.all_nodes_color_reset.emit()
 	SignalBus.item_peeped.emit(heap[0], 0)
-	
+	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1).timeout
 	SignalBus.processes_all_finished.emit()
 	return heap[0]
 	

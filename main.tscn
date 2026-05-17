@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://cefs45dedd1sh" path="res://scripts/line_manager.gd" id="11_efxa6"]
 [ext_resource type="Script" uid="uid://b03fekmo2h577" path="res://h_slider.gd" id="13_ycdy4"]
 [ext_resource type="Script" uid="uid://brtwxv7hlxu8l" path="res://scripts/return_value.gd" id="14_vivmo"]
-[ext_resource type="Script" path="res://scripts/cpu_particles_2d.gd" id="14_w48qg"]
+[ext_resource type="Script" uid="uid://b61iylqyn2xyr" path="res://scripts/cpu_particles_2d.gd" id="14_w48qg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cegan"]
 bg_color = Color(0.11119685, 0.11119685, 0.11119678, 1)
@@ -248,7 +248,9 @@ script = ExtResource("11_efxa6")
 [node name="HeapLogic" parent="." unique_id=646134977 instance=ExtResource("1_272bh")]
 
 [node name="Array" type="Node2D" parent="." unique_id=554977431]
+position = Vector2(1, -1)
 script = ExtResource("5_dg77c")
+start_x = -1799.0
 
 [node name="DummySprite" type="Sprite2D" parent="." unique_id=112544339]
 visible = false
@@ -257,7 +259,7 @@ texture = ExtResource("2_0xm2m")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1543878726]
 position = Vector2(576, 324)
-zoom = Vector2(0.25, 0.25)
+zoom = Vector2(0.2, 0.2)
 script = ExtResource("1_ig7tw")
 
 [node name="Psuedo Codes" type="Control" parent="." unique_id=1788360387]
