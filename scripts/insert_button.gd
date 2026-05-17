@@ -8,6 +8,7 @@ func _ready() -> void:
 	SignalBus.peep_button_pressed.connect(lock)
 	SignalBus.pop_button_pressed.connect(lock)
 	SignalBus.insert_button_pressed.connect(lock)
+	SignalBus.heapify_button_pressed.connect(lock)
 	SignalBus.insert_button_pressed.connect(be_selected)
 
 func _on_pressed() -> void:
@@ -19,7 +20,7 @@ func _on_pressed() -> void:
 		value = randi_range(1, 999)
 	else:
 		return
-	if(0<value and value<1000):
+	if(-1000<value and value<1000):
 		SignalBus.insert_button_pressed.emit(value)
 
 func lock(value: int):

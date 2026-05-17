@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://d3x81gbef5ne"]
+
+[ext_resource type="Script" uid="uid://celqih8sqhx78" path="res://menu/main_menu.gd" id="1_chmv6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rhts7"]
+
+[node name="Menu" type="Control" unique_id=1207463664]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_chmv6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1641372622]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -225.0
+offset_right = 225.0
+alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer" unique_id=1509975206]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rhts7")
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1730556425]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Heap Visualization
+Created By Group 27 Studios"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=355592447]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rhts7")
+
+[node name="EmptyArray" type="Button" parent="VBoxContainer" unique_id=885117508]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Empty Array"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=1036669790]
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rhts7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=77127018]
+layout_mode = 2
+
+[node name="RandomArray" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1967977834]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Random Array"
+
+[node name="RandomArraySize" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=330446961]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Size"
+alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer" unique_id=492300725]
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rhts7")
+
+[node name="CreateArray" type="Button" parent="VBoxContainer" unique_id=767179831]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Create Array"
+
+[node name="HSeparator5" type="HSeparator" parent="VBoxContainer" unique_id=39870294]
+layout_mode = 2
+theme_override_constants/separation = 100
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rhts7")
+
+[node name="Credits" type="Button" parent="VBoxContainer" unique_id=1636204837]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Credits
+"
+
+[connection signal="pressed" from="VBoxContainer/EmptyArray" to="." method="_on_empty_array_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RandomArray" to="." method="_on_random_array_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreateArray" to="." method="_on_create_array_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]

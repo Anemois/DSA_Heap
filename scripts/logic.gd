@@ -7,7 +7,7 @@ const DEBUG = false
 
 func insert(value: int) -> void:
 	SignalBus.all_nodes_color_reset.emit()
-	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1).timeout
+	await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1)
 	
 	heap.append(value)
 	var index = heap.size() - 1
@@ -17,12 +17,13 @@ func insert(value: int) -> void:
 	
 	# Then animate the sifting
 	await SignalBus.insert_finished
-	_sift_up(index)
+	await _sift_up(index)
+	
+	SignalBus.processes_all_finished.emit()
 
 func pop_max(useless: int) -> int:
 	SignalBus.all_nodes_color_reset.emit()
-	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1).timeout
-	
+	await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1)
 	if heap.is_empty():
 		push_error("Cannot pop from an empty heap!")
 		return -1 
@@ -42,7 +43,7 @@ func pop_max(useless: int) -> int:
 	SignalBus.add_halo.emit(last_index)
 	SignalBus.node_color_changed.emit(last_index, "swap")
 	SignalBus.node_color_changed.emit(0, "swap")
-	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed / 10 * 0.4).timeout
+	await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed / 10 * 0.4)
 	
 	SignalBus.items_swapped.emit(last_index, 0)
 	await SignalBus.swap_finished
@@ -52,26 +53,32 @@ func pop_max(useless: int) -> int:
 	SignalBus.item_removed.emit(max_val, last_index)
 	await SignalBus.remove_finished
 	
-	_sift_down(0)
+	await _sift_down(0)
 	
+	SignalBus.processes_all_finished.emit()
 	return max_val
 
 func peep(useless: int) -> int:
 	if heap.is_empty():
-		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1).timeout
+		await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1)
 		SignalBus.processes_all_finished.emit()
 		return -1
 	SignalBus.all_nodes_color_reset.emit()
 	SignalBus.item_peeped.emit(heap[0], 0)
-	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1).timeout
+	await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1)
 	SignalBus.processes_all_finished.emit()
 	return heap[0]
-	
-func heapify() -> void:
+
+func heapify(value) -> void:
+	heap = SignalBus.preloaded_array
+	SignalBus.instant_heap_creation.emit(heap)
+	await SignalBus.custom_timer(1)
 	var start_index = (heap.size() / 2) - 1
-	
+	print("enter")
 	for i in range(start_index, -1, -1):
-		_sift_down(i)
+		await _sift_down(i)
+		
+	SignalBus.processes_all_finished.emit()
 	
 func _sift_up(index: int) -> void:
 	var parent_index = (index - 1) / 2
@@ -80,12 +87,12 @@ func _sift_up(index: int) -> void:
 		SignalBus.node_color_changed.emit(index, "compare")
 		SignalBus.node_color_changed.emit(parent_index, "compare")
 		SignalBus.line_color_changed.emit(index, "compare", true)
-		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4).timeout
+		await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4)
 	
 	if index > 0 and heap[index] > heap[parent_index]:
 		SignalBus.node_color_changed.emit(index, "swap")
 		SignalBus.node_color_changed.emit(parent_index, "swap")
-		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4).timeout
+		await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4)
 		
 		var temp = heap[index]
 		heap[index] = heap[parent_index]
@@ -97,13 +104,12 @@ func _sift_up(index: int) -> void:
 		SignalBus.node_color_changed.emit(index, "visited")
 		if parent_index == 0:
 			SignalBus.node_color_changed.emit(parent_index, "visited")
-		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.2).timeout
+		await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.2)
 		
-		_sift_up(parent_index)
+		await _sift_up(parent_index)
 	else:
 		SignalBus.node_color_changed.emit(index, "visited")
-		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.2).timeout
-		SignalBus.processes_all_finished.emit()
+		await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.2)
 
 func _sift_down(index: int) -> void:
 	var larger_index = index
@@ -114,7 +120,7 @@ func _sift_down(index: int) -> void:
 		SignalBus.node_color_changed.emit(index, "compare")
 		SignalBus.node_color_changed.emit(left_child, "compare")
 		SignalBus.line_color_changed.emit(left_child, "compare", false)
-		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4).timeout
+		await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4)
 		
 		if heap[left_child] > heap[larger_index]:
 			larger_index = left_child
@@ -123,7 +129,7 @@ func _sift_down(index: int) -> void:
 		SignalBus.node_color_changed.emit(index, "compare")
 		SignalBus.node_color_changed.emit(right_child, "compare")
 		SignalBus.line_color_changed.emit(right_child, "compare", false)
-		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4).timeout
+		await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4)
 		
 		if heap[right_child] > heap[larger_index]:
 			larger_index = right_child
@@ -131,7 +137,7 @@ func _sift_down(index: int) -> void:
 	if larger_index != index:
 		SignalBus.node_color_changed.emit(index, "swap")
 		SignalBus.node_color_changed.emit(larger_index, "swap")
-		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4).timeout
+		await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4)
 		
 		var temp = heap[index]
 		heap[index] = heap[larger_index]
@@ -143,18 +149,18 @@ func _sift_down(index: int) -> void:
 		
 		SignalBus.node_color_changed.emit(index, "visited")
 		SignalBus.node_color_changed.emit(larger_index, "visited")
-		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.2).timeout
+		await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.2)
 		
-		_sift_down(larger_index)
+		await _sift_down(larger_index)
 	else:
 		SignalBus.node_color_changed.emit(index, "visited")
-		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.2).timeout
-		SignalBus.processes_all_finished.emit()
+		await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.2)
 
 func _ready() -> void:
 	SignalBus.insert_button_pressed.connect(insert)
 	SignalBus.pop_button_pressed.connect(pop_max)
 	SignalBus.peep_button_pressed.connect(peep)
+	SignalBus.heapify_button_pressed.connect(heapify)
 	if DEBUG:
 		print("========================================")
 		print("🚀 BACKEND DIAGNOSTICS ONLINE")
@@ -192,10 +198,10 @@ func _ready() -> void:
 		# --- TEST 4: Floyd's Heapify ---
 		print("\n[Test 4] Executing Bulk Heapify...")
 		# We simulate the user overriding the heap with a random list
-		heap = [3, 99, 12, 8, 45, 105, 1] 
-		print("Raw Array -> ", heap)
+		var array = [3, 99, 12, 8, 45, 105, 1] 
+		print("Raw Array -> ", array)
 
-		heapify() # Run your O(n) algorithm
+		heapify(heap) # Run your O(n) algorithm
 		print("Heapified State -> ", heap)
 		assert(heap[0] == 105, "FATAL: Heapify failed. 105 should be the root.")
 		print("-> Heapify Test: PASSED")

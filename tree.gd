@@ -16,21 +16,22 @@ func _ready() -> void:
 	SignalBus.all_nodes_color_reset.connect(reset_all_nodes_color)
 	SignalBus.item_peeped.connect(peeped)
 	SignalBus.add_halo.connect(add_halo)
+	SignalBus.instant_heap_creation.connect(instant_create)
 	
 func _process(delta: float) -> void:
 	pass
 
 func add_node(value: int, index: int):
 	var newNode: TreeNode = treeNode.instantiate()
-	newNode.global_position = Vector2(0, 20000)
 	add_child(newNode)
+	newNode.global_position = Vector2(0, 20000)
 	newNode.set_value(value)
 	newNode.set_new_node()
 	nodes.append(newNode)
 	newNode.set_halo(true)
 	length += 1
 	rearrange_tree()
-	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed).timeout
+	await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed)
 	SignalBus.insert_finished.emit()
 
 func remove_node(value: int, index: int):
@@ -39,7 +40,7 @@ func remove_node(value: int, index: int):
 	nodes.pop_back()
 	length -= 1
 	rearrange_tree()
-	await get_tree().create_timer(blink).timeout
+	await SignalBus.custom_timer(blink)
 	SignalBus.remove_finished.emit()
 	add_halo(index)
 
@@ -66,6 +67,9 @@ func rearrange_tree():
 func swap(index_a: int, index_b: int) -> void:
 	var Node_a: Node2D = nodes[index_a]
 	var Node_b: Node2D = nodes[index_b]
+	if Node_a == null or Node_b == null:
+		SignalBus.swap_finished.emit()	
+		return
 	var position_a: Vector2 = Node_a.get_assigned_position()
 	var position_b: Vector2 = Node_b.get_assigned_position()
 	var value_a: int = Node_a.get_value()
@@ -75,7 +79,7 @@ func swap(index_a: int, index_b: int) -> void:
 	
 	Node_a.relocate(position_b.x, position_b.y)
 	Node_b.relocate(position_a.x, position_a.y)
-	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed).timeout
+	await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed)
 	Node_a.teleport(position_a.x, position_a.y)
 	Node_b.teleport(position_b.x, position_b.y)
 	Node_a.set_value(value_b)
@@ -110,3 +114,15 @@ func peeped(value, index) -> void:
 func add_halo(index) -> void:
 	if index < length:
 		nodes[index].set_halo(true)
+
+func instant_create(heap: Array[int]) -> void:
+	for value in heap:
+		var newNode: TreeNode = treeNode.instantiate()
+		newNode.global_position = Vector2(0, 20000)
+		add_child(newNode)
+		newNode.set_value(value)
+		newNode.set_new_node()
+		nodes.append(newNode)
+		newNode.set_halo(true)
+		length += 1
+		rearrange_tree()

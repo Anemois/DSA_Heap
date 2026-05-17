@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 
 func move(delta) -> void:
 	var move_rate: float = SignalBus.stimulation_speed * 5
-	position = position + (assigned_position - position) * move_rate * (5 if abs(position.y) >= 4000 else 1) * delta
+	position = position + (assigned_position - position) * min(move_rate * (5 if abs(position.y) >= 4000 else 1) * delta, 1) 
 
 func relocate(x: float, y: float) -> void:
 	assigned_position = Vector2(x,  y)

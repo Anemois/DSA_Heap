@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="DSA_heap"
-run/main_scene="uid://bhcus3ldbxx7p"
+run/main_scene="uid://d3x81gbef5ne"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bid4wi4jpwl8r" path="res://tree_node.gd" id="1_evpp1"]
 [ext_resource type="Texture2D" uid="uid://b72tp7lqr7gi7" path="res://1x1.jpg" id="2_112p8"]
-[ext_resource type="Shader" path="res://halo.gdshader" id="2_evpp1"]
+[ext_resource type="Shader" uid="uid://sqoh5wlxgeb0" path="res://halo.gdshader" id="2_evpp1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e2u21"]
 shader = ExtResource("2_evpp1")

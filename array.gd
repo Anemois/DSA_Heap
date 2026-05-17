@@ -27,11 +27,12 @@ func _ready() -> void:
 	SignalBus.node_color_changed.connect(color_node)
 	SignalBus.all_nodes_color_reset.connect(reset_all_nodes_color)
 	SignalBus.add_halo.connect(add_halo)
+	SignalBus.instant_heap_creation.connect(instant_create)
 
 func add_node(value: int, index: int) -> void:
 	var newNode: TreeNode = treeNode.instantiate()
-	newNode.global_position = Vector2(20000, 0)
 	add_child(newNode)
+	newNode.global_position = Vector2(20000, 0)
 	newNode.set_new_node()
 	newNode.set_halo(true)
 	newNode.set_value(value)
@@ -43,7 +44,7 @@ func remove_node_visual(value: int, _index: int) -> void:
 	targetNode.queue_free()
 	nodes.pop_back()
 	rearrange_array()
-	await get_tree().create_timer(0.001).timeout
+	await SignalBus.custom_timer(0.001)
 	add_halo(_index)
 	
 func highlight_peek(value: int = 0) -> void:
@@ -69,7 +70,7 @@ func swap(index_a: int, index_b: int) -> void:
 	
 	Node_a.relocate(position_b.x, position_b.y)
 	Node_b.relocate(position_a.x, position_a.y)
-	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed).timeout
+	await SignalBus.custom_timer(SignalBus.animation_time / SignalBus.stimulation_speed)
 	Node_a.teleport(position_a.x, position_a.y)
 	Node_b.teleport(position_b.x, position_b.y)
 	Node_a.set_value(value_b)
@@ -89,3 +90,14 @@ func reset_all_nodes_color() -> void:
 func add_halo(index) -> void:
 	if index < nodes.size():
 		nodes[index].set_halo(true)
+
+func instant_create(heap: Array[int]) -> void:
+	for value in heap:
+		var newNode: TreeNode = treeNode.instantiate()
+		newNode.global_position = Vector2(0, 20000)
+		add_child(newNode)
+		newNode.set_value(value)
+		newNode.set_new_node()
+		nodes.append(newNode)
+		newNode.set_halo(true)
+		rearrange_array()

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bt3oa44rpu2ui"]
+
+[ext_resource type="Script" uid="uid://8w170u5uj3kf" path="res://menu/credits.gd" id="1_wp78b"]
+
+[node name="Credits" type="Control" unique_id=948620811]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wp78b")
+
+[node name="Label" type="Label" parent="." unique_id=1330165166]
+layout_mode = 0
+offset_top = 165.0
+offset_right = 1152.0
+offset_bottom = 354.0
+theme_override_font_sizes/font_size = 32
+text = "PM: 唐英誠
+FE:  邱新堯, 蕭大唯
+BE:  范振軒, 鄒宇翔
+QA:  莊紘瑜, 丘富升
+
+Built on Godot 4.6.2 Engine"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=383666084]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 545.0
+offset_right = 749.0
+offset_bottom = 598.0
+theme_override_font_sizes/font_size = 32
+text = "------------ Back ------------"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

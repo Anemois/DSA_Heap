@@ -7,6 +7,7 @@ func _ready() -> void:
 	SignalBus.peep_button_pressed.connect(lock)
 	SignalBus.pop_button_pressed.connect(lock)
 	SignalBus.insert_button_pressed.connect(lock)
+	SignalBus.heapify_button_pressed.connect(lock)
 	SignalBus.peep_button_pressed.connect(peep_be_selected)
 
 func _on_pressed() -> void:
