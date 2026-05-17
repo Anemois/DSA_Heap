@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://dcnu3gw3bqo36" path="res://scripts/psuedocode_text.gd" id="9_kek77"]
 [ext_resource type="Script" uid="uid://cefs45dedd1sh" path="res://scripts/line_manager.gd" id="11_efxa6"]
 [ext_resource type="Script" uid="uid://b03fekmo2h577" path="res://h_slider.gd" id="13_ycdy4"]
+[ext_resource type="Script" uid="uid://brtwxv7hlxu8l" path="res://scripts/return_value.gd" id="14_vivmo"]
+[ext_resource type="Script" path="res://scripts/cpu_particles_2d.gd" id="14_w48qg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cegan"]
 bg_color = Color(0.11119685, 0.11119685, 0.11119678, 1)
@@ -215,6 +217,14 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="Curve" id="Curve_ycdy4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ycdy4"]
+offsets = PackedFloat32Array(0, 0.16811594, 0.31594202, 0.46666667, 0.64927536, 0.8173913, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.5176471, 0.13725491, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0.53226477, 0.27120072, 0.68647414, 1)
+
 [node name="Main" type="Node2D" unique_id=14035978]
 script = ExtResource("1_4c57u")
 
@@ -241,6 +251,7 @@ script = ExtResource("11_efxa6")
 script = ExtResource("5_dg77c")
 
 [node name="DummySprite" type="Sprite2D" parent="." unique_id=112544339]
+visible = false
 position = Vector2(861, 2921)
 texture = ExtResource("2_0xm2m")
 
@@ -460,10 +471,41 @@ text = "Speed"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-max_value = 10.0
-step = 0.2
+min_value = 0.1
+max_value = 4.0
+step = 0.1
 value = 1.0
 script = ExtResource("13_ycdy4")
+
+[node name="Return Value" type="Node2D" parent="CanvasLayer" unique_id=1669641615]
+position = Vector2(74, 548)
+script = ExtResource("14_vivmo")
+
+[node name="Num" type="Label" parent="CanvasLayer/Return Value" unique_id=1135877919]
+offset_right = 67.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer/Return Value/Num" unique_id=1325648561]
+position = Vector2(34, 14)
+emitting = false
+amount = 100
+emission_shape = 5
+emission_points = PackedVector2Array()
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
+direction = Vector2(0, 0)
+spread = 28.45
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_ycdy4")
+color_ramp = SubResource("Gradient_ycdy4")
+script = ExtResource("14_w48qg")
 
 [connection signal="pressed" from="CanvasLayer/UI/HBoxContainer/Peep Button" to="." method="_on_peep_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/HBoxContainer/Peep Button" to="CanvasLayer/UI/HBoxContainer/Peep Button" method="_on_pressed"]

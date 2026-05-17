@@ -33,5 +33,6 @@ func rearrange():
 		var parent = (i - 1) / 2
 		lines[i].relocate(tree.position + tree.nodes[parent].assigned_position, tree.position + tree.nodes[i].assigned_position)
 
-func line_change_color(index, color):
-	lines[index].set_color_by_type(color)
+func line_change_color(index, color, up):
+	if index > 0:
+		lines[index].set_color_by_type(color, up)

@@ -1,7 +1,15 @@
 [gd_scene format=3 uid="uid://y6h2l8oyaeyk"]
 
 [ext_resource type="Script" uid="uid://uhji7vydcnak" path="res://line_2d.gd" id="1_aqnkx"]
+[ext_resource type="Script" uid="uid://ddt7lmhosn1bw" path="res://scripts/mid_point.gd" id="2_584vq"]
 
 [node name="ALine" type="Line2D" unique_id=1961114019]
+z_index = -3
 points = PackedVector2Array(0, 0, 100, 100)
 script = ExtResource("1_aqnkx")
+
+[node name="MidPoint" type="Line2D" parent="." unique_id=424030187]
+z_index = 1
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("2_584vq")

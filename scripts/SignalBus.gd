@@ -14,8 +14,9 @@ signal item_removed(value: int, index: int)
 signal remove_finished
 signal processes_all_finished
 signal node_color_changed(index: int, color_type: String)
-signal line_color_changed(index: int, color_type: String)
+signal line_color_changed(index: int, color_type: String, up: bool)
 signal all_nodes_color_reset
+signal add_halo(index: int)
 
 var stimulation_speed: float = 1
 var animation_time: float = 1
