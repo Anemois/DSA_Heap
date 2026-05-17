@@ -21,6 +21,8 @@ func rearrange_array() -> void:
 func _ready() -> void:
 	nodes.clear()
 	SignalBus.item_inserted.connect(add_node)
+	SignalBus.item_removed.connect(remove_node_visual)
+	SignalBus.peep_button_pressed.connect(highlight_peek)
 
 func add_node(value: int, index: int) -> void:
 	var newNode: TreeNode = treeNode.instantiate()
@@ -29,3 +31,29 @@ func add_node(value: int, index: int) -> void:
 	newNode.set_value(value)
 	nodes.append(newNode)
 	rearrange_array()
+
+func remove_node_visual(value: int, _index: int) -> void:
+	for i in range(nodes.size()):
+		if nodes[i].get_value() == value:
+			var targetNode = nodes[i]
+			targetNode.set_swapping() 
+			await get_tree().create_timer(0.25).timeout
+			nodes.remove_at(i) 
+			targetNode.queue_free() 
+			break 
+			
+	rearrange_array()
+	
+func highlight_peek(value: int = 0) -> void:
+	var heap_logic = $"../HeapLogic"
+	var current_max_value = heap_logic.heap[0]
+	for node in nodes:
+		if node.get_value() == current_max_value:
+			node.set_new_node()
+			var tween = create_tween()
+			tween.tween_property(node, "scale", Vector2(1.4, 1.4), 0.15)
+			tween.tween_property(node, "scale", Vector2(1.0, 1.0), 0.15)
+			await tween.finished
+			node.set_normal()
+			break
+		
