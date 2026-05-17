@@ -3,6 +3,7 @@ class_name Heap_Tree extends Node2D
 var nodes: Array[TreeNode]
 var length: int = 0
 var blink: float = 0.001
+var height_diff: int = 210
 @onready var treeNode = preload("res://treeNode.tscn")
 @onready var line_manager = $LineManager
 
@@ -13,19 +14,20 @@ func _ready() -> void:
 	SignalBus.item_removed.connect(remove_node)
 	SignalBus.node_color_changed.connect(color_node)
 	SignalBus.all_nodes_color_reset.connect(reset_all_nodes_color)
-
+	SignalBus.item_peeped.connect(peeped)
+	
 func _process(delta: float) -> void:
 	pass
 
 func add_node(value: int, index: int):
-	print("Hi")
 	var newNode: TreeNode = treeNode.instantiate()
 	newNode.global_position = Vector2(0, 20000)
+	add_child(newNode)
 	newNode.set_value(value)
 	newNode.set_new_node()
 	nodes.append(newNode)
+	newNode.set_halo(true)
 	length += 1
-	add_child(newNode)
 	rearrange_tree()
 	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed).timeout
 	SignalBus.insert_finished.emit()
@@ -50,7 +52,7 @@ func rearrange_tree():
 	for node in nodes:
 		node.relocate((tree_weight/row_count)*(row_index-(row_count+1)/2.), y)
 		if(row_index == row_count):
-			y += 200 + (tree_height-level) * 100
+			y += height_diff + (tree_height-level) * height_diff/2
 			level += 1
 			row_index = 1
 			sum -= row_count
@@ -66,6 +68,8 @@ func swap(index_a: int, index_b: int) -> void:
 	var position_b: Vector2 = Node_b.get_assigned_position()
 	var value_a: int = Node_a.get_value()
 	var value_b: int = Node_b.get_value()
+	var halo_a: bool = Node_a.get_halo()
+	var halo_b: bool = Node_b.get_halo()
 	
 	Node_a.relocate(position_b.x, position_b.y)
 	Node_b.relocate(position_a.x, position_a.y)
@@ -74,6 +78,9 @@ func swap(index_a: int, index_b: int) -> void:
 	Node_b.teleport(position_b.x, position_b.y)
 	Node_a.set_value(value_b)
 	Node_b.set_value(value_a)
+	Node_a.set_halo(halo_b)
+	Node_b.set_halo(halo_a)
+	
 	SignalBus.swap_finished.emit()	
 
 func color_node(index: int, color_type: String) -> void:
@@ -84,3 +91,11 @@ func color_node(index: int, color_type: String) -> void:
 func reset_all_nodes_color() -> void:
 	for node in nodes:
 		node.set_normal()
+	for line in line_manager.lines:
+		if line != null:
+			line.reset()
+			
+func peeped(value, index) -> void:
+	if length > 0:
+		nodes[0].set_halo(true)
+		nodes[0].set_color_by_type("visited")

@@ -16,10 +16,10 @@ func _on_pressed() -> void:
 	if(value.is_valid_int()):
 		value = int(value)
 	elif(value.is_empty()):
-		value = randi_range(1, 99)
+		value = randi_range(1, 999)
 	else:
 		return
-	if(0<value and value<100):
+	if(0<value and value<1000):
 		SignalBus.insert_button_pressed.emit(value)
 
 func lock(value: int):

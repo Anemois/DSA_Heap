@@ -56,9 +56,13 @@ func pop_max(useless: int) -> int:
 	return max_val
 
 func peep(useless: int) -> int:
-	if heap.is_empty():
-		return -1
+	SignalBus.all_nodes_color_reset.emit()
 	await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.1).timeout
+	if heap.is_empty():
+		SignalBus.processes_all_finished.emit()
+		return -1
+	SignalBus.item_peeped.emit(heap[0], 0)
+	
 	SignalBus.processes_all_finished.emit()
 	return heap[0]
 	
@@ -74,31 +78,29 @@ func _sift_up(index: int) -> void:
 	if index > 0:
 		SignalBus.node_color_changed.emit(index, "compare")
 		SignalBus.node_color_changed.emit(parent_index, "compare")
-		SignalBus.line_color_changed.emit(index, "compare")
+		SignalBus.line_color_changed.emit(index, "compare", true)
 		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4).timeout
 	
 	if index > 0 and heap[index] > heap[parent_index]:
 		SignalBus.node_color_changed.emit(index, "swap")
 		SignalBus.node_color_changed.emit(parent_index, "swap")
-		SignalBus.line_color_changed.emit(index, "swap")
 		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4).timeout
 		
 		var temp = heap[index]
 		heap[index] = heap[parent_index]
 		heap[parent_index] = temp	
-		
+		SignalBus.line_color_changed.emit(index, "swap", true)
 		SignalBus.items_swapped.emit(index, parent_index)
 		await SignalBus.swap_finished
 		
 		SignalBus.node_color_changed.emit(index, "visited")
-		SignalBus.node_color_changed.emit(parent_index, "visited")
+		if parent_index == 0:
+			SignalBus.node_color_changed.emit(parent_index, "visited")
 		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.2).timeout
 		
 		_sift_up(parent_index)
 	else:
-		if index > 0:
-			SignalBus.node_color_changed.emit(index, "visited")
-			#SignalBus.node_color_changed.emit(parent_index, "visited")
+		SignalBus.node_color_changed.emit(index, "visited")
 		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.2).timeout
 		SignalBus.processes_all_finished.emit()
 
@@ -110,7 +112,7 @@ func _sift_down(index: int) -> void:
 	if left_child < heap.size():
 		SignalBus.node_color_changed.emit(index, "compare")
 		SignalBus.node_color_changed.emit(left_child, "compare")
-		SignalBus.line_color_changed.emit(left_child, "compare")
+		SignalBus.line_color_changed.emit(left_child, "compare", false)
 		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4).timeout
 		
 		if heap[left_child] > heap[larger_index]:
@@ -119,7 +121,7 @@ func _sift_down(index: int) -> void:
 	if right_child < heap.size():
 		SignalBus.node_color_changed.emit(index, "compare")
 		SignalBus.node_color_changed.emit(right_child, "compare")
-		SignalBus.line_color_changed.emit(right_child, "compare")
+		SignalBus.line_color_changed.emit(right_child, "compare", false)
 		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4).timeout
 		
 		if heap[right_child] > heap[larger_index]:
@@ -128,13 +130,13 @@ func _sift_down(index: int) -> void:
 	if larger_index != index:
 		SignalBus.node_color_changed.emit(index, "swap")
 		SignalBus.node_color_changed.emit(larger_index, "swap")
-		SignalBus.line_color_changed.emit(larger_index, "swap")
 		await get_tree().create_timer(SignalBus.animation_time / SignalBus.stimulation_speed * 0.4).timeout
 		
 		var temp = heap[index]
 		heap[index] = heap[larger_index]
 		heap[larger_index] = temp
 		
+		SignalBus.line_color_changed.emit(larger_index, "swap", false)
 		SignalBus.items_swapped.emit(index, larger_index)
 		await SignalBus.swap_finished
 		
